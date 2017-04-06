@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>text_personal_history_desires</name>
+        <scoped_name>x_casus_irt_studen_text_personal_history_desires</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-01-06 22:06:36</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>121cbed76f807200ad6cd4a21c3ee478</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>text_personal_history_desires</sys_name>
+        <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
+        <sys_update_name>sys_ui_macro_121cbed76f807200ad6cd4a21c3ee478</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-01-06 22:06:36</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<p>Information Resources and Technology believes that all student assistants should not only contriubte to the department,
+		but gain knowledge and skills that will help them to contriubte to other organizations throughout their lives. 
+		What knowledge and skills would you especially like to acuire from working at Information Resources and Technology?
+	</p>
+
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="sys_app" relationship="" sys_domain="global" table="sys_metadata" version="2" view="cat_item_view">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_name</element>
+            <list_id display_value="sys_metadata" element="NULL" name="sys_metadata" parent="sys_app" relationship="NULL" sys_domain="global" view="caf3ed876f883200ad6cd4a21c3ee4be">648421c76f883200ad6cd4a21c3ee4eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_id>a88421c76f883200ad6cd4a21c3ee4eb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_class_name</element>
+            <list_id display_value="sys_metadata" element="NULL" name="sys_metadata" parent="sys_app" relationship="NULL" sys_domain="global" view="caf3ed876f883200ad6cd4a21c3ee4be">648421c76f883200ad6cd4a21c3ee4eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_id>2c8421c76f883200ad6cd4a21c3ee4eb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_update_name</element>
+            <list_id display_value="sys_metadata" element="NULL" name="sys_metadata" parent="sys_app" relationship="NULL" sys_domain="global" view="caf3ed876f883200ad6cd4a21c3ee4be">648421c76f883200ad6cd4a21c3ee4eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_id>ac8421c76f883200ad6cd4a21c3ee4eb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_scope</element>
+            <list_id display_value="sys_metadata" element="NULL" name="sys_metadata" parent="sys_app" relationship="NULL" sys_domain="global" view="caf3ed876f883200ad6cd4a21c3ee4be">648421c76f883200ad6cd4a21c3ee4eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_id>208421c76f883200ad6cd4a21c3ee4ec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_policy</element>
+            <list_id display_value="sys_metadata" element="NULL" name="sys_metadata" parent="sys_app" relationship="NULL" sys_domain="global" view="caf3ed876f883200ad6cd4a21c3ee4be">648421c76f883200ad6cd4a21c3ee4eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_id>a08421c76f883200ad6cd4a21c3ee4ec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_updated_on</element>
+            <list_id display_value="sys_metadata" element="NULL" name="sys_metadata" parent="sys_app" relationship="NULL" sys_domain="global" view="caf3ed876f883200ad6cd4a21c3ee4be">648421c76f883200ad6cd4a21c3ee4eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_id>248421c76f883200ad6cd4a21c3ee4ec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_updated_by</element>
+            <list_id display_value="sys_metadata" element="NULL" name="sys_metadata" parent="sys_app" relationship="NULL" sys_domain="global" view="caf3ed876f883200ad6cd4a21c3ee4be">648421c76f883200ad6cd4a21c3ee4eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_id>a48421c76f883200ad6cd4a21c3ee4ec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>ref_item_option_new.cat_item</element>
+            <list_id display_value="sys_metadata" element="NULL" name="sys_metadata" parent="sys_app" relationship="NULL" sys_domain="global" view="caf3ed876f883200ad6cd4a21c3ee4be">648421c76f883200ad6cd4a21c3ee4eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_id>288421c76f883200ad6cd4a21c3ee4ec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>ref_sc_cat_item_option.cat_item</element>
+            <list_id display_value="sys_metadata" element="NULL" name="sys_metadata" parent="sys_app" relationship="NULL" sys_domain="global" view="caf3ed876f883200ad6cd4a21c3ee4be">648421c76f883200ad6cd4a21c3ee4eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>8</position>
+            <sum>false</sum>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_id>a88421c76f883200ad6cd4a21c3ee4ec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>sys_metadata</name>
+            <parent>sys_app</parent>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-05 21:03:35</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>648421c76f883200ad6cd4a21c3ee4eb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_metadata</sys_name>
+            <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
+            <sys_update_name>sys_ui_list_sys_metadata_sys_app_cat_item_view</sys_update_name>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-05 21:03:35</sys_updated_on>
+            <sys_user/>
+            <view display_value="Cat Item View" name="cat_item_view">caf3ed876f883200ad6cd4a21c3ee4be</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

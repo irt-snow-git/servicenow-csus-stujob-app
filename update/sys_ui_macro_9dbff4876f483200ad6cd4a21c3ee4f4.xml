@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>Breadcrumb bar for navigation purposes. Display the current psuedopage the user is on in respect to the student application. </description>
+        <media_type/>
+        <name>navigation_breadcrumb_bar</name>
+        <scoped_name>x_casus_irt_studen_navigation_breadcrumb_bar</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-01-05 18:54:48</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>9dbff4876f483200ad6cd4a21c3ee4f4</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>navigation_breadcrumb_bar</sys_name>
+        <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
+        <sys_update_name>sys_ui_macro_9dbff4876f483200ad6cd4a21c3ee4f4</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-01-05 19:49:04</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	
+<style>
+<!--
+A.breadcrumb {
+	text-decoration: underline;
+	white-space: normal;
+}
+	
+A.breadcrumb {
+	color: blue;
+}
+	
+TD.breadcrumb_container {
+	font-size: 0.9em;
+	white-space: normal;
+	vertical-align: top;
+	background: white;
+}
+	
+TD.breadcrumb_container A, TD.breadcrumb_container A:HOVER{
+text-decoration:none;
+}
+
+TD.breadcrumb_container, TD.breadcrumb_container SPAN, DIV.breadcrumb_container {
+padding: 3px 0px 1px 1px;
+}
+
+.hierarchical TD.breadcrumb_container,
+.hierarchical TD.breadcrumb_container table {
+background: #EAF1FB;
+}
+
+DIV.tabs2_list A.breadcrumb:HOVER {
+text-decoration: none;
+}
+
+DIV.tabs2_list SPAN.breadcrumb {
+white-space: normal;
+}
+
+a.breadcrumb_delete {
+background: #f6f6f6;
+color: #999;
+text-decoration: line-through;
+}
+	
+SPAN.breadcrumb_separator, A.breadcrumb_separator {
+color: black;
+margin: 0 2px;
+}
+	
+-->	
+</style>
+	
+<div class="row" style="margin: 0px;">
+	<div class="col-xs-12" style="padding: 0px;">
+		<div class="custom-form-group form-group catalog-form-group">
+			<table style="width: 100%">
+				<tbody>
+					<tr>
+					<td>
+						<ol class="process-breadcrumb process-breadcrumb-border">
+							<li class="completed">
+								<a href="#">General Info</a>
+							</li>
+							<li class="active">
+								<a href="#">General Questions</a>
+							</li>
+							<li class="completed disabled">
+								<a href="#">Employment History</a>
+							</li>
+							<li class="disabled">
+								<a href="#">Personal Details</a>
+							</li>
+							<li class="disabled">
+								<a href="#">References</a>
+							</li>
+							<li class="disabled">
+								<a href="#">SUBMIT</a>
+							</li>
+						</ol>
+					</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

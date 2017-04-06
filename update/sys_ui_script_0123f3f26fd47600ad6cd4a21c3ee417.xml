@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Angular controllers for various section containers on record producer view.</description>
+        <global>false</global>
+        <name>x_casus_irt_studen.angular_controller</name>
+        <script><![CDATA[var myApp = angular.module('myApp', []);
+/*Controller Names
+- Reference Controller
+- EmploymentController
+
+*/
+
+//Start General Info Controller//
+myApp.controller('GeneralInfoController', ['$scope', function ($scope) {
+    
+	$scope.data = {};//Master object to hold data
+	
+	$scope.data.questions = {};
+	
+	$scope.data.questions = [{
+		"question": "Are you authroized to work in the United States?",
+		"id": "question_1",
+		"type": "radio",
+		"answer": "null"
+	},{
+		"question": "Have you ever been convicted of a crime?",
+		"id": "question_2",
+		"type": "radio",
+		"answer": "null"
+	},{
+		"question": "Please list the details and circumstances.",
+		"id": "question_2a",
+		"type": "textarea_child",
+		"parent": "question_2",
+		"answer": ""
+	},{
+		"question": "Will you be employed by another oncampus department during the academic year?",
+		"id": 'question_3',
+		"type": "radio",
+		"answer": "null"
+	},{
+		"question": "What department or program?",
+		"id": "question_3a",
+		"type": "text_child",
+		"parent": "question_3",
+		"answer": ""
+	},{
+		"question": "How many hours per week?",
+		"id": "question_3b",
+		"type": "text_child",
+		"parent": "question_3",
+		"answer": ""
+	},{
+		"question": "Have you been awarded Federal Workstudy funds for the current academic year?",
+		"id": "question_4",
+		"type":"radio",
+		"answer": "null"
+	},{
+		"question": "Are you an international student?",
+		"id": "question_5",
+		"type":"radio",
+		"answer": "null"
+	},{
+		"question": "Languages you speak, read or write fluenty",
+		"id": "question_7",
+		"type":"text",
+		"answer": ""
+	},{
+		"question": "Please indicate the earliest date you are available to work",
+		"id": "question_8",
+		"type":"date",
+		"answer": ""
+	}];
+	//returns the parent to the child so they can check the answer to the question
+	//This is for dependant fields that may show/hide based on parent answer
+	$scope.findParent = function (id) {
+		var parent = $scope.data.questions.filter(function (parent) {
+			return parent.id === id;
+		})[0];
+		return parent;
+	};
+		
+}]);
+//END General Info Controller//
+
+//Start Reference Controller//
+myApp.controller('ReferenceController', ['$scope', function ($scope) {
+    
+	$scope.references = {};//Master object to hold data
+	$scope.references.max = 6;//Max number of references allowed
+	
+	$scope.references.data = [{
+		"name": "",
+		"relationship": "",
+		"address": "",
+		"phone": ""
+	},{
+		"name": "",
+		"relationship": "",
+		"address": "",
+		"phone": ""	
+	}];
+	//This adds another panel for users to input additional data.
+	$scope.addAdditionalReference = function () {
+		//Make sure we haven't maxxed out num of allowed references
+		if ($scope.references.data.length < $scope.references.max) {
+			//Create blank reference data
+			var ref = { 
+				"name": "",
+				"relationship": "",
+				"address": "",
+				"phone": ""	
+			};
+			//Push blank data to our array (angular will render more fields)
+			$scope.references.data.push(ref);
+			return true;
+		} else {
+			//Too many references already added, can't add more
+			alert("Reference limit reached. You cannot add an additional reference.");
+			return false;
+		}	
+	};
+	//This deletes the panel and it's information.
+	$scope.close = function(index) {
+		//Removes the data from array, thus removing the html elements
+		$scope.references.data.splice(index,1);
+	};
+	
+}]);
+//END Reference Controller//
+
+
+//Start Employment Controller//
+myApp.controller('EmploymentController', ['$scope', function ($scope) {
+    
+	$scope.employers = {};//Master object to hold data
+	$scope.employers.max = 6;//Max number of employers allowed
+	
+	$scope.employers.data = [{
+		"name": "",
+		"address": "",
+		"supervisor": "",
+		"phone": "",
+		"jobTitle": "",
+		"hours": "",
+		"salaryStart": "",
+		"salaryEnd": "",
+		"dateStart": "",
+		"dateEnd": "",
+		"jobDuties": "",
+		"reasonForLeaving": ""
+	}, {
+		"name": "",
+		"address": "",
+		"supervisor": "",
+		"phone": "",
+		"jobTitle": "",
+		"hours": "",
+		"salaryStart": "",
+		"salaryEnd": "",
+		"dateStart": "",
+		"dateEnd": "",
+		"jobDuties": "",
+		"reasonForLeaving": ""
+	}, {
+		"name": "",
+		"address": "",
+		"supervisor": "",
+		"phone": "",
+		"jobTitle": "",
+		"hours": "",
+		"salaryStart": "",
+		"salaryEnd": "",
+		"dateStart": "",
+		"dateEnd": "",
+		"jobDuties": "",
+		"reasonForLeaving": ""
+	}];
+	
+	//This adds another panel for users to input additional data.
+	$scope.addAdditionalEmployer = function () {
+		//Make sure we haven't maxxed out num of allowed references
+		if ($scope.employers.data.length < $scope.employers.max) {
+			//Create blank reference data
+			var emp = {
+				"name": "",
+				"address": "",
+				"supervisor": "",
+				"phone": "",
+				"jobTitle": "",
+				"hours": "",
+				"salaryStart": "",
+				"salaryEnd": "",
+				"dateStart": "",
+				"dateEnd": "",
+				"jobDuties": "",
+				"reasonForLeaving": ""
+			};
+			//Push blank data to our array (angular will render more fields)
+			$scope.employers.data.push(emp);
+			return true;
+		} else {
+			//Too many employers already added, can't add more
+			alert("Employer limit reached. You cannot add an additional employer.");
+			return false;
+		}
+		
+	};
+	
+	//This deletes the panel and it's information.
+	$scope.close = function(index) {
+		//Removes the data from array, thus removing the html elements
+		$scope.employers.data.splice(index,1);
+	};
+	
+}]); 
+//END EMPLOYMENT CONTROLLER//
+
+//Start Personal History Controller//
+myApp.controller('PersonalHistoryController', ['$scope', function ($scope) {
+    
+	$scope.data = {};//Master object to hold data
+	
+	$scope.data.strengths = [{"strength": ""},{"strength": ""},{"strength": ""}];
+	$scope.data.weaknesses = [{"weakness": ""},{"weakness": ""},{"weakness": ""}];
+	$scope.data.skills = {"text" : " "};
+	$scope.data.desires = {"text" : " "};
+	$scope.data.customerService = {"text" : " "};
+
+}]);
+//END Personal History Controller//
+
+//Start Availability Controller//
+myApp.controller('AvailabilityController', ['$scope', function ($scope) {
+	$scope.timeKeeper = {};
+	//To change start and end times on the scheduler
+	$scope.timeKeeper.startTime = 800;
+	$scope.timeKeeper.endTime = 1900; 
+	$scope.timeKeeper.incrementAmount = 30; //How many minutes per block (e.g. 30 = 30 minutes, so 8:00 -> 8:30 -> 9:00)
+	
+
+	$scope.timeKeeper.monday = {};
+	$scope.timeKeeper.tuesday = {};
+	$scope.timeKeeper.wednesday = {};
+	$scope.timeKeeper.thursday = {};
+	$scope.timeKeeper.friday = {};
+	$scope.timeKeeper.saturday = {};
+	$scope.timeKeeper.sunday = {};
+	$scope.minuteIncrements = []; //holds time values in raw int format (800, 900, 915...)
+	$scope.timeFormatted = {};//Hash to hold pretty formatted times (AM/PM)
+	
+	/* This loop fills the availability of each timeslot of each day.
+		The values are initilized to false (as in, by default their all
+		the availabilities are set to false) */
+	
+	var hour = $scope.timeKeeper.startTime;
+	var maxMinutes = hour + 60;
+	var index = 0;
+
+	while (hour <= $scope.timeKeeper.endTime) {
+		//hour (as pure int) is used as the index the hash table
+		$scope.timeKeeper.monday[hour] = false;
+		$scope.timeKeeper.tuesday[hour] = false;
+		$scope.timeKeeper.wednesday[hour] = false;
+		$scope.timeKeeper.thursday[hour] = false;
+		$scope.timeKeeper.friday[hour] = false;
+		$scope.timeKeeper.saturday[hour] = false;
+		$scope.timeKeeper.sunday[hour] = false;
+		$scope.timeKeeper.minuteIncrements = [];
+		
+		//ng-repeat indexes from 0 to max num of 15 min blocks
+		$scope.minuteIncrements[index] = hour;
+		
+		//Pretty print time (AM/PM format)
+		var suffix = "AM";
+		var hourString = hour.toString();
+		if (hour >= 1200) suffix = "PM";
+		if (hour > 1245) { //Check if 1300 or higher
+			hourString = (hour - 1200).toString();// converts 1300 - 1200 = 100 (which will become 1:00)
+		}
+		//Converts HHmm to HH:mm + AM/PM, trust me
+		$scope.timeFormatted[hour] = hourString.substring(0, hourString.length -2) + ":"
+					+  hourString.substring(hourString.length-2,hourString.length) + " " + suffix;
+		
+		hour += $scope.timeKeeper.incrementAmount; 
+		index += 1;
+		
+		//If we have completed 1 hour, (60 min), skip to the next hour
+		if (hour == maxMinutes) {
+			hour = maxMinutes + 40;
+			maxMinutes = hour + 60;
+		}
+		//time keeper is the one actually passed through to the form
+		$scope.timeKeeper.minuteIncrements = $scope.minuteIncrements;
+	}	
+	
+
+}]);
+//END Availability Controller//
+]]></script>
+        <script_name>angular_controller</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-01-17 23:04:48</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>0123f3f26fd47600ad6cd4a21c3ee417</sys_id>
+        <sys_mod_count>110</sys_mod_count>
+        <sys_name>x_casus_irt_studen.angular_controller</sys_name>
+        <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
+        <sys_update_name>sys_ui_script_0123f3f26fd47600ad6cd4a21c3ee417</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-03-15 20:05:42</sys_updated_on>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

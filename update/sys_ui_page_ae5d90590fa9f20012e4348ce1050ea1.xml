@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>catalog</category>
+        <client_script/>
+        <description>The page the user is redirected to once the application is submitted </description>
+        <direct>false</direct>
+        <endpoint>x_casus_irt_studen_Post Submit Page.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<!--
+<script>
+	window.onload = function() {
+		var userName = g_user.userName;
+		document.getElementById("user").innerHTML = userName;
+	}
+		
+</script>
+-->
+	
+	<div class="col-md-10">
+		<h3 id="user"> Thank you for submitting your application</h3>
+		<p>For general questions or follow up, email&#160; <b> irt-emp@csus.edu</b>&#160;</p>
+	</div>
+	
+	<br></br>
+	<br></br>
+	<!-- Uncomment when the ui page is it's own direct link rather than being nested within the Record Producer view
+	<div class="col-md-10" style="padding:30px;">
+	<button class="btn-secondary" onclick="window.close()">
+Close this window
+	</button>
+	</div>
+	-->
+
+</j:jelly>]]></html>
+        <name>Post Submit Page</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-03-15 19:10:33</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>ae5d90590fa9f20012e4348ce1050ea1</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>Post Submit Page</sys_name>
+        <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
+        <sys_update_name>sys_ui_page_ae5d90590fa9f20012e4348ce1050ea1</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-03-15 19:56:39</sys_updated_on>
+    </sys_ui_page>
+</record_update>

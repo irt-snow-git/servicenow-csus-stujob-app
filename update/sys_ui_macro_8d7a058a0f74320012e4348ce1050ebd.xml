@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>form_view_personal_history</name>
+        <scoped_name>x_casus_irt_studen_form_view_personal_history</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-02-09 21:30:10</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>8d7a058a0f74320012e4348ce1050ebd</sys_id>
+        <sys_mod_count>50</sys_mod_count>
+        <sys_name>form_view_personal_history</sys_name>
+        <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
+        <sys_update_name>sys_ui_macro_8d7a058a0f74320012e4348ce1050ebd</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-03-16 23:27:16</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<script language="javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js" />
+<script src="x_casus_irt_studen.controller_form_view.jsdbx"></script>
+	
+	
+<style>
+	
+.panel:hover {
+	background-color: inherit;
+	border-color: #bdc0c4;
+	cursor: default;
+}
+	
+.form-group, .k {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+label {
+    font-weight: normal;
+    padding-bottom: 3px;
+    padding-top: 7px;
+    font-size: 14px;
+}
+	
+.btn-close {
+	font-size:18px;
+	color: lightgray;
+	font-weight: lighter;
+	background: transparent;
+}
+
+td.n {
+    background-color: lightgray;
+    padding: 0px;
+    vertical-align: top;
+    display: table-cell;
+}
+
+th.n {
+	text-align: center;
+	padding: 10px;
+	vertical-align: top; 
+}
+
+tr.n {
+	display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table.w {
+	border-collapse: separate;
+	border-spacing: 7px 5px;
+	table-layout: fixed;
+	width: 100%;
+} 
+
+table { margin: 0 auto; }
+
+.checkboxFour {
+	width: 40px !important;
+	height: 20px;
+	background: white;
+	padding: 1px;
+	margin: 2px;
+	position: relative;
+  text-align: center;
+}
+
+.checkboxFour label {
+	display: table;
+	width: 100%;
+	height: 110%;
+	transition: all .5s ease;
+	cursor: pointer;
+	position: inherit;
+	top: -20px;
+	left: 0px;
+	z-index: 1;
+	background: lightgray;
+}
+
+.checkboxFour label:hover {
+  background: lightgreen;
+}
+
+.checkboxFour input[type=checkbox]:checked + label {
+	background: #26ca28;
+}
+
+h4.scheduler {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext { 
+    visibility: hidden;
+    width: 120px;
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    padding: 0px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 0%;
+    left: -50%;
+    margin-left: 60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+	
+.noData {
+	color: gray;
+	padding-left: 10px;
+}
+
+</style>
+	
+<script>
+<!-- Angular only allows one ng-App per page. Because these are in their own
+ UI macros, using ng-App wont work for each html elements.
+
+Instead, bootstrap each app module.  -->
+	
+var histApp = angular.module('histAppMod', []);
+
+//START CONTROLLER//
+histApp.controller('HistoryController', ['$scope', function ($scope) {
+	$scope.data = {};//Master object to hold data
+
+	//Called by ng-init within the html below
+	$scope.init = function() {
+		//Get data from hidden form field, parse into javascript object
+		$scope.data = JSON.parse(g_form.getValue("data_personal_history"));
+	};
+	
+	$scope.hasData = function(d){
+		var boo = isEmpty(d);
+		return !boo;
+	};
+	
+	$scope.hasText = function(d) {
+		return (d !== '') &amp;amp; (d !== ' ');
+	};
+	
+}]); //END CONTROLLER//
+
+	angular.element(document).ready(function() {
+		var appElementHist = document.getElementById('histAppDiv');
+		angular.bootstrap(appElementHist, ['histAppMod']);
+	});
+
+	
+</script>
+	
+	
+<!-- form for inputs on each field. Function above takes values and adds line to a multiline text box variable on record producer. -->
+<div id="histAppDiv">
+	<div ng-controller="HistoryController" id="hist-controller" class="col-md-8">
+	<div ng-init="init()"></div>
+		<!-- Panel - Strengths-->
+	<div class="row col-md-6 k">
+			<div class="panel panel-default k">
+				<div class="panel-heading">
+			  		<h3 class="panel-title">Personal Strengths</h3>
+				</div>
+				<div class="panel-body" style="max-height: none;">
+					
+					<div ng-if="hasData(data.strengths) === true ">
+					<!--Begin Repeat -->
+					<div ng-repeat="s in data.strengths track by $index">
+					<div class="row k">
+						<div class="form-group col-md-12">
+							<span ng-model="s.strengths" class="col-md-4" style="padding-right:1px;"><strong>Strength {{$index + 1}}:</strong></span>
+							<span class="col-md-8"> {{s.strength}}</span>
+						</div>
+					</div>
+					</div><!--End Repeat-->
+					</div>
+					<div ng-if="hasData(data.strengths) === false ">
+						<p class="noData">No data provided</p>
+					</div>
+				</div>
+			</div> 
+
+	</div>
+	<!-- Panel - Weakness-->
+	<div class="row col-md-6 k">
+		<div class="panel panel-default k">
+			<div class="panel-heading">
+		  		<h3 class="panel-title">Personal Weaknesses</h3>
+			</div>
+			<div class="panel-body" style="max-height: none;">
+				<!-- Begin Repeat -->
+				<div ng-if="hasData(data.weaknesses) === true ">
+				<div ng-repeat="w in data.weaknesses track by $index">
+				<div class="row k">
+					<div class="form-group col-md-12">
+						<span ng-model="w.weaknesses" class="col-md-4" style="padding-right:1px;"><strong>Weakness {{$index + 1}}:</strong></span>
+						<span class="col-md-8"> {{w.weakness}}</span>
+					</div>
+				</div>
+				</div><!--End Repeat-->
+				</div>
+				<div ng-if="hasData(data.weaknesses) === false ">
+					<p class="noData">No data provided</p>
+				</div>
+			</div>
+		</div> 
+
+	</div>
+		<!-- Panel - Skills Panel -->
+	<div class="row col-md-12 k">
+		<div class="panel panel-default k">
+			<div class="panel-heading">
+		  		<h3 class="panel-title">Technical Skills</h3>
+			</div>
+			<div class="panel-body" style="max-height: none;">
+				<div ng-if="hasText(data.skills.text)">
+					<div class="row k">
+						<div class="form-group col-md-12">
+							<span class="col-md-12"> {{data.skills.text}}</span>
+						</div>
+					</div>
+				</div>
+				<div ng-if="!hasText(data.skills.text)">
+					<p class="noData">No data provided</p>
+				</div>
+			</div>
+		</div>
+	</div>
+			<!-- Panel Desired Skills Panel-->
+	<div class="row col-md-12 k">
+		<div class="panel panel-default k">
+			<div class="panel-heading">
+		  		<h3 class="panel-title">Desired Skills/Experience to Gain</h3>
+			</div>
+			<div class="panel-body" style="max-height: none;">
+				<div ng-if="hasText(data.desires.text)">
+					<div class="form-group col-md-12">
+						<span class="col-md-12"> {{data.desires.text}}</span>
+					</div>
+				</div>
+				<div ng-if="!hasText(data.desires.text)">
+					<p class="noData">No data provided</p>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- Panel - Customer Service Example-->
+	<div class="row col-md-12 k">
+		<div class="panel panel-default k">
+			<div class="panel-heading">
+		  		<h3 class="panel-title">Example of Customer Service</h3>
+			</div>
+			<div class="panel-body" style="max-height: none;">
+				<div ng-if="hasText(data.customerService.text)">
+					<div class="form-group col-md-12">
+						<span class="col-md-12"> {{data.customerService.text}}</span>
+					</div>
+				</div>
+				<div ng-if="!hasText(data.customerService.text)">
+					<p class="noData">No data provided</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	</div>
+
+	
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

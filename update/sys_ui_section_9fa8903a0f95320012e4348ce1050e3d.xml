@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_section caption="" section_id="9fa8903a0f95320012e4348ce1050e3d" sys_domain="global" table="x_casus_irt_studen_student_employee_applications" version="3" view="Other">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>number</element>
+            <position>0</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>51e0fcdd0fa9f20012e4348ce1050ee5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>student_name</element>
+            <position>1</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>d1e0fcdd0fa9f20012e4348ce1050ee5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>student_phone</element>
+            <position>2</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>55e0fcdd0fa9f20012e4348ce1050ee5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>student_email</element>
+            <position>3</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>d5e0fcdd0fa9f20012e4348ce1050ee5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>student_address</element>
+            <position>4</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>59e0fcdd0fa9f20012e4348ce1050ee5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>student_expected_grad_date</element>
+            <position>5</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>d9e0fcdd0fa9f20012e4348ce1050ee5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>question_8</element>
+            <position>6</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>5de0fcdd0fa9f20012e4348ce1050ee5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>student_position</element>
+            <position>7</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>dde0fcdd0fa9f20012e4348ce1050ee5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>8</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>51e0fcdd0fa9f20012e4348ce1050ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>rejected</element>
+            <position>9</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>d1e0fcdd0fa9f20012e4348ce1050ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>interviewed</element>
+            <position>10</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>55e0fcdd0fa9f20012e4348ce1050ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>interview_date</element>
+            <position>11</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>d5e0fcdd0fa9f20012e4348ce1050ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>interviewer</element>
+            <position>12</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>59e0fcdd0fa9f20012e4348ce1050ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>contact_type</element>
+            <position>13</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>d9e0fcdd0fa9f20012e4348ce1050ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>contact_date</element>
+            <position>14</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-15 20:22:55</sys_created_on>
+            <sys_id>5de0fcdd0fa9f20012e4348ce1050ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_irt_studen_student_employee_applications" sys_domain="global" view="c3a8903a0f95320012e4348ce1050e3d">9fa8903a0f95320012e4348ce1050e3d</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-15 20:22:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_casus_irt_studen_student_employee_applications</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-03-08 00:12:17</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>9fa8903a0f95320012e4348ce1050e3d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_casus_irt_studen_student_employee_applications</sys_name>
+            <sys_overrides display_value="">global</sys_overrides>
+            <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
+            <sys_update_name>sys_ui_section_9fa8903a0f95320012e4348ce1050e3d</sys_update_name>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-03-08 00:12:17</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Other" name="Other">c3a8903a0f95320012e4348ce1050e3d</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

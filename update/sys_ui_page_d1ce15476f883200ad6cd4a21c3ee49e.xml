@@ -1,0 +1,1225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var sectionStatus = {};//Holds completion status for each section
+
+var cont_names = ["CONT_START_general_info", "CONT_START_questions", "CONT_START_employment_history",
+"CONT_START_personal_history", "CONT_START_references", "CONT_START_submit"];
+
+var parent_cont_names = ["parent_general_info", "parent_questions", "parent_employment_history",
+"parent_personal_history", "parent_references", "parent_submit" ];
+
+var max_sections = cont_names.length;
+
+function changePage(e) {
+	
+	//Get ID tag name of html element
+	var clickedItem = e.target.id;
+	var parentNode = e.target.parentNode;
+	var parentID = parentNode.id;
+	
+	updatePageIndex(clickedItem);
+	updateCSS(parentID);
+	toggleVisibleAll(clickedItem);
+	
+	e.stopPropagation();
+}
+
+/*_________________________________________________________________
+ * Description: Hides all containers except passed container
+ * Parameters: Container name desired to display (string)
+- Must be same container name as in Record Producer Variable
+- Case Sensitive (for now at least...)
+________________________________________________________________*/
+function toggleVisibleAll(containerName) {
+	//Hide all main container sections
+	g_form.setDisplay('CONT_START_general_info', false);
+	g_form.setDisplay('CONT_START_questions', false);
+	g_form.setDisplay('CONT_START_employment_history', false);
+	g_form.setDisplay('CONT_START_personal_history', false);
+	g_form.setDisplay('CONT_START_references', false);
+	//Then unhide the section we actually want to display
+	g_form.setDisplay(containerName, true);
+	g_form.getControl(containerName).focus();
+	window.scrollTo(0, 0);	//Snaps view to top
+}
+
+
+/*_________________________________________________________________
+ * Description: Updates the containers CSS classes, sets an active container
+ * Parameters: ID of the desired container to set to active
+ * Returns:
+________________________________________________________________*/
+function updateCSS(ID) {
+	//alert('section status = ' + sectionStatus['CONT_START_general_info']);
+	document.getElementById("parent_general_info").className = sectionStatus['CONT_START_general_info'];
+	document.getElementById("parent_questions").className = sectionStatus['CONT_START_questions'];
+	document.getElementById("parent_employment_history").className = sectionStatus['CONT_START_employment_history'];
+	document.getElementById("parent_personal_history").className = sectionStatus['CONT_START_personal_history'];
+	document.getElementById("parent_references").className = sectionStatus['CONT_START_references'];
+	//Activate the actual desired container
+	document.getElementById(ID).className += " active";
+}
+
+
+/*_________________________________________________________________
+ * Description: Updates after each form section is completely filled.
+A catalog UI policy will call this function.
+ * Parameters: - cont_name [string] is the container section name that has been completed
+name is case-sensitive and must match the variable name in Record Producer
+- status [string] is the CSS class that describes the completion status of
+the section. Use 'completed' or 'none' or 'active'. Multiple classes can apply.
+ * Returns:
+________________________________________________________________*/
+function updateSectionStatus(cont_name, status) {
+	sectionStatus[cont_name] = status;
+	var parentID = document.getElementById(cont_name).parentNode.id;
+	if ( !document.getElementById(parentID).className.match(/(?:^|\s)active(?!\S)/) ) {
+		document.getElementById(parentID).className = status;
+	}
+	document.getElementById(parentID).className = 'active ' + status;
+}
+
+
+/*_________________________________________________________________
+ * Description: Changes the current section via button
+ * Parameters: Number to increment the page index (1 or -1)
+ * Returns:
+________________________________________________________________*/
+function nextPage(num) {
+	var page = document.getElementById("current_section");
+	var current_section = parseInt(page.value);
+	page.value = current_section + num;
+	toggleButtons(page);
+	
+	updateCSS(parent_cont_names[page.value]);
+	toggleVisibleAll(cont_names[page.value]);
+}
+
+/*_________________________________________________________________
+ * Description: Updates the page index whenever the section changes.
+ * Parameters: Container name to set the page index to
+ * Returns:
+________________________________________________________________*/
+function updatePageIndex(cont_name) {
+	var page = document.getElementById("current_section");
+	var current_section = parseInt(page.value);
+	
+	page.value = cont_names.indexOf(cont_name);
+	toggleButtons(page);
+	
+}
+
+
+/*_________________________________________________________________
+ * Description: Checks the range of the sections to disable or enable buttons
+ * Parameters: html element (the one that holds the current page value)
+ * Returns:
+________________________________________________________________*/
+function toggleButtons(page) {
+	
+	if (page.value <= 0) {
+		toggleBtnPrevious(true);
+	} else {
+		toggleBtnPrevious(false);
+	}
+	
+	if (page.value >= max_sections-1) {
+		toggleBtnNext(true);
+	} else {
+		toggleBtnNext(false);
+	}
+}
+
+function initHideSections() {
+	var divSection = document.getElementById("employment-history-div");
+	divSection.style.display = 'none';
+	divSection = document.getElementById("references-div");
+	divSection.style.display = 'none';
+	divSection = document.getElementById("personal-history-div");
+	divSection.style.display = 'none';
+	divSection = document.getElementById("availability-div");
+	divSection.style.display = 'none';
+	
+}
+
+/*_________________________________________________________________
+ * Description: Hides the various 'data' fields. These fields save angular javascript data
+that is passed through the record when the user submits.
+ * Parameters:
+ * Returns:
+________________________________________________________________*/
+function hideDataVariables() {
+	g_form.setDisplay("data_availability", false);
+	g_form.setDisplay("data_references", false);
+	g_form.setDisplay("data_personal_history", false);
+	g_form.setDisplay("data_employment_history", false);
+	g_form.setDisplay('CONT_START_general_info', false);
+	g_form.setDisplay('CONT_START_questions', false);
+}
+
+/*_________________________________________________________________
+ * Description: Saves the various puesdofields we created on the page with html and angular
+ * Parameters:
+ * Returns: true if all required fields are filled in
+false if missing mandatory fields (should prevent submission)
+________________________________________________________________*/
+function saveFieldData() {
+	//This is ugly and needs some TLC, but it works for now
+	var valid = true;
+	
+	//Data Validation (should be a loop, change later)
+	//there has to be a better way, but this will work >:(
+	var fields = {};
+	var fieldNames = 
+		["student-address","student-phone","student-email",
+		"student-major","student-class-level","student-grad-date",
+		"student-units","student-gpa", "student-position"];
+	var missingFields = [];
+// 	var fields = 
+// 		[
+// 		{"student-address": ""},{"student-phone": ""},{"student-email": ""},
+// 		{"student-major": ""},{"student-class-level": ""},{"student-grad-date": ""},
+// 		{"student-units": ""},{"student-gpa": ""}
+// 		];
+	
+	
+	
+	//Save the individual fields (hard coded for now, change to a loop eventually...)
+	var val = document.getElementById("student-address").value;
+	g_form.setValue('student_address',val,val);
+	fields['student-address'] = val;
+
+	val = document.getElementById("student-phone").value;
+	g_form.setValue('student_phone',val,val);
+	fields['student-phone'] = val;
+	
+	val = document.getElementById("student-email").value;
+	g_form.setValue('student_email',val,val);
+	fields['student-email'] = val;
+	
+	val = document.getElementById("student-major").value;
+	g_form.setValue('student_major',val,val);
+	fields['student-major'] = val;
+	
+	val = document.getElementById("student-class-level").value;
+	g_form.setValue('student_class_level',val,val);
+	fields['student-class-level'] = val;
+	///////Selected element is different maybe idk
+	val = document.getElementById("student-grad-date");
+	val = val.options[val.selectedIndex].value;
+	g_form.setValue('student_expected_grad_date',val,val);
+	fields['student-grad-date'] = val;
+	
+	val = document.getElementById("student-units").value;
+	g_form.setValue('student_units_enrolled',val,val);
+	fields['student-units'] = val;
+	
+	val = document.getElementById("student-gpa").value;
+	g_form.setValue('student_gpa',val,val);
+	fields['student-gpa'] = val;
+	
+	val = document.getElementById("student-position").value;
+	g_form.setValue('student_position',val,val);
+	fields['student-position'] = val;
+	
+	for(var j = 0; j < fieldNames.length; j++){
+		if ((fields[fieldNames[j]] === '')) {
+			missingFields = fieldNames[j];
+			var el = document.getElementById(fieldNames[j]);
+			el.addEventListener('focus',removeInvalidClass);//add event handler
+			//el.addEventListener('mouseenter',removeInvalidClass);//add event handler
+			el.className += " invalidField";    //Set css class
+			valid = false;
+		}
+	}
+	
+	var q = {};
+	q = JSON.parse(document.getElementById("questions_all").value);
+	
+	for(var i = 0; i<q.length; i++){
+		if (q[i].answer === 'null') {
+			var el2 = document.getElementById(q[i].id + "-div");
+			el2.addEventListener('focus',removeInvalidClass);//add event handler
+			el2.addEventListener('mouseenter',removeInvalidClass, true);//add event handler
+			el2.className += " invalidField";    //Set css class
+			valid = false;
+		}
+			if (q[i].type === 'date') {
+			//Convert date to YYYY-MM-DD for date variable (hopefully fix this sometime)
+			var d = q[i].answer;
+			try {
+				d = d.substr(0,10);//Get the first few characters, removing extra stuff
+			} catch (e) {
+				console.log("safari problem: " + e);
+			}
+			q[i].answer = d;
+		}
+		g_form.setValue(q[i].id,q[i].answer,q[i].answer);
+	}
+	if (!valid) {
+		window.scroll(0,findPos(document.getElementById("general-info-panel-div")));
+
+		return false;//just break away and skip this stuff if they are missing fields 
+	}
+	//These elements contain the objects with the data for each section (these aren't required)
+	g_form.setValue('data_availability', document.getElementById("schedule_values_all").value);
+	g_form.setValue('data_personal_history', document.getElementById("personal_history_all").value);
+	
+	//Since the html is dynamically created, clean out any empty submissions so completely blank sections won't appear
+	var cleanedData = JSON.parse(document.getElementById("employers_all").value);
+	cleanedData = removeEmptyObjects(cleanedData);
+	g_form.setValue('data_employment_history',JSON.stringify(cleanedData));
+	console.log(cleanedData);
+	//Again
+	cleanedData = JSON.parse(document.getElementById("references_all").value);
+	cleanedData = removeEmptyObjects(cleanedData);
+	g_form.setValue('data_references',JSON.stringify(cleanedData));
+	console.log(cleanedData);
+	
+	return valid;
+}
+
+/*_________________________________________________________________
+   * Description: Removes empty objects by checking their fields. If all fields are empty,
+		   it is removed.
+   * Parameters:@data - should be an array of objects. Each object will have various fields
+   * Returns: Array with empty objects removed
+   ________________________________________________________________*/
+function removeEmptyObjects(data) {
+	var newArray = [];
+	for (var i = 0; i < data.length; i++) {
+		//console.log("Position " + i + " of " + data.length);
+		var cur = data[i];
+		var vals = Object.values(cur);
+		var isEmpty = true;
+		//Loop through each field in the current obj
+		for (var j = 0; j < Object.keys(cur).length; j++) {
+			if (vals[j] != '') {
+				isEmpty = false;
+				break;
+			}
+		}//End For
+		if (!isEmpty) {
+			newArray.push( data[i]);
+		}
+	}//End For
+	return newArray;
+}
+
+function removeInvalidClass(e) {
+	var clickedItem = e.target.id;
+	var element = document.getElementById(clickedItem);
+	element.className = element.className.replace( /(?:^|\s)invalidField(?!\S)/g , '' );
+	e.stopPropagation();
+	
+}
+
+/*_________________________________________________________________
+ * Description: Hides or unhides a hint for a field
+ * Parameters: @elementID:string - id of the element div that contains the hint text
+@display:boolean - true to set visible, false to hide
+ * Returns:
+________________________________________________________________*/
+function showHelpText(elementID, display) {
+	var element = document.getElementById(elementID);
+	if (display === 'false' ) {
+		element.className = "helptextHidden";
+	} else {
+		element.className = "helptext";
+	}
+}
+
+
+function fixSafariCSS() {
+	var safariElements = document.querySelectorAll('.checkboxFour label');
+	for (var i=0; i<safariElements.length; i++) {
+		safariElements[i].style.height = "40px";
+	} 
+}
+
+function findPos(obj) {
+    var curtop = 0;
+    if (obj.offsetParent) {
+        do {
+            curtop += obj.offsetTop;
+        } while (obj = obj.offsetParent);
+    return [curtop];
+    }
+}
+
+function test(){
+	alert('TEST');
+}]]></client_script>
+        <description>Full student application. All data input occurs here. &#13;
+&#13;
+Display the current psuedopage the user is on in respect to the student application. &#13;
+Classes for breadcrumbs are 'completed', 'completed disabled', 'disabled', 'active'. Use 'none' for default look</description>
+        <direct>false</direct>
+        <endpoint>x_casus_irt_studen_student_app_main_page.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<script language="javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js" />
+<script src="x_casus_irt_studen.angular_controller.jsdbx"></script>
+	
+<script>
+	window.onload = function()
+	{
+		hideDataVariables();
+		<!-- add listener for mouse click events to parent of list objects -->
+		//document.getElementById("nav_breadcrumb_bar").addEventListener( 'click', changePage);
+		modifySubmitButton();//Removes default submit buttton
+		//initHideSections();//hides the divs for each sections initially when page is loaded
+
+	   	var userName = g_user.userName;
+   		//Set the visible field to the user's name (this field is readonly)
+   		document.getElementById("student-name").value = g_user.getFullName();
+
+		<!--
+		var fieldsToModify = document.getElementsByClassName('form-control');
+		console.log(fieldsToModify);
+		for (val of fieldsToModify) {
+			val.style = "width: 40% !important\;";
+		}
+		var f_gpa = g_form.getControl('student_gpa');
+		f_gpa.style = "width: 40% !important\;";
+	   -->
+	
+	//check browser
+	var userAgent = navigator.userAgent.toLowerCase();
+if (userAgent .indexOf('safari')!=-1){ 
+       if(userAgent .indexOf('chrome')  > -1){
+		//chrome
+       }else if((userAgent .indexOf('opera')  > -1)||(userAgent .indexOf('opr')  > -1)){
+         //browser is opera 
+       }else{
+		   alert("safari");
+	fixSafariCSS();
+
+       }
+    }
+}
+</script>
+	
+<style>
+label {
+    font-weight: normal;
+    padding-bottom: 3px;
+    padding-top: 7px;
+    font-size: 14px;
+}
+	
+.btn-close {
+	font-size:18px;
+	color: lightgray;
+	font-weight: lighter;
+	background: transparent;
+}
+
+td.n {
+    padding: 0px;
+    vertical-align: top;
+    display: table-cell;
+}
+
+th.n {
+	text-align: center;
+	padding: 10px;
+	vertical-align: top; 
+}
+
+tr.n {
+	display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table.w {
+	border-collapse: separate;
+	border-spacing: 7px 5px;
+	table-layout: fixed;
+	width: 100%;
+} 
+
+table { margin: 0 auto; }
+
+.checkboxFour {
+	width: 40px !important;
+	height: 20px;
+	background: white;
+	padding: 1px;
+	margin: 2px;
+	position: relative;
+  text-align: center;
+}
+	
+@-moz-document url-prefix() {
+.checkboxFour {
+	width: 40px !important;
+	height: 100%;
+	background: white;
+	padding: 1px;
+	margin: 2px;
+	position: relative;
+  text-align: center;
+}	
+}
+
+
+.checkboxFour label {
+	display: table;
+	width: 100%;
+	height: 100%;
+	transition: all .5s ease;
+	cursor: pointer;
+	position: inherit;
+	top: -20px;
+	left: 0px;
+	z-index: 1;
+	background: lightgray;
+}
+
+.checkboxFour label:hover {
+  background: lightgreen;
+}
+
+.checkboxFour input[type=checkbox]:checked + label {
+	background: #26ca28;
+}
+
+h4.scheduler {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    padding: 0px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 0%;
+    left: -50%;
+    margin-left: 60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.helptextHidden {
+	transition: height linear 0.8s, opacity ease-out 0.5s;
+	height: 0;
+	opacity: 0;
+	overflow: hidden;
+	display: block;
+	padding-left: 8px;
+	padding-top: 5px;
+}
+	
+.helptext {
+	transition: height linear 0.6s, opacity ease-in 0.7s;
+	height: 35px;
+	display: block;
+	opacity: 1;
+	padding-left: 8px;
+	padding-top: 5px;
+}
+
+.invalidField.cool{
+	background-color: #fce8e8;
+}
+
+.invalidField input{
+	border-color: red;
+}
+
+.invalidField {
+	border-color: red;
+}
+.invalidField select{
+	border-color: red;
+}
+
+
+
+
+</style>
+		
+	
+<!-- id "current_section" holds the value of which section the user is currently viewing. This value will change when button/links
+	are pressed. Changing this value should change the visiblity of the various sections. -->
+<input type='HIDDEN' value='0' id='current_section'/>
+<!--	
+<div class="col-xs-12" style="padding: 0px;">
+	<div class="custom-form-group form-group catalog-form-group">
+		<table style="width: 95%">
+			<tbody>
+				<tr>
+				<td>
+					id nav_breadcrumb_bar is parent listener for clicks on the nav options
+						Note: id names are case-sensitive. Must be same name as container in RP
+					
+					<ol class="process-breadcrumb process-breadcrumb-border" id="nav_breadcrumb_bar">
+						<li class="active" id="parent_general_info">
+							<a href="#" id="CONT_START_general_info">General Info</a>
+						</li>
+						<li class="none" id="parent_questions">
+							<a href="#" id="CONT_START_questions">General Questions</a>
+						</li>
+						<li class="none" id="parent_employment_history">
+							<a href="#" id="CONT_START_employment_history">Employment History</a>
+						</li>
+						<li class="none" id="parent_personal_history">
+							<a href="#" id="CONT_START_personal_history">Personal History</a>
+						</li>
+						<li class="none" id="parent_references">
+							<a href="#" id="CONT_START_references">References</a>
+						</li>
+						<li class="disabled" id="parent_submit">
+							<a href="#" id="CONT_START_submit">Submit</a>
+						</li>
+					</ol>
+				</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+-->
+
+<div class="row">
+	<br></br>
+</div>
+	 
+	<!-- form for inputs on each field. Function above takes values and adds line to a multiline text box variable on record producer. -->
+<div ng-app="myApp"> <!--Anything angular must be within this ng-app div -->
+
+
+<!-- General Info -->
+
+<div class="row col-md-10" id="general-info-div">
+	<h1> Instructions and Information</h1>
+	<p> Thank you for your interest in Information and Resources and Technology (IRT)
+		We hire students in part-time positions for up to 20 hours a week. All positions are customer service oriented, have an emphasis on team work, and include the opportunity to work on individual projects. 
+	</p>
+	<p> Current job postings are available on the <b>Hornet Career Connection Web Site</b>
+		at: <a herf="http://www.csus.edu/careercenter/students/career%20connections" target="_blank">Hornet Career Center</a>
+	</p>
+		
+	<p> Descriptions and requirements for the student assistant positions are available at 
+		http://www.csus.edu/irt/studentemployment/ 
+	</p>
+	<p>
+		<ul>
+			<li>If an area does not apply, please indicate "N/A" and, if warranted, explain in cover letter.</li>
+			<li>A resume cannot be used in lieu of employment history.</li>
+			<li>Applications and supporting materials will not be returned.</li>
+			<li>Applications will be screened for the best qualified candidates. Applicants to be interviewed will be contacted
+				by email and/or phone. </li>
+			<li>Student employment is at the mutual consent of both the department and the student. Employment may be terminated by either party "at will" with or without cause or notice.</li>
+		</ul>
+	</p>
+	<!-- Attachment Button-->
+	<div class="row col-md-12">
+	<button class="btn-secondary" onclick="saveCatAttachment(gel('sysparm_item_guid').value, 'x_casus_irt_studen_student_employee_applications')">
+		Upload Attachment
+		<img title="Attachments..." height="16" src="images/icons/attachment.gifx" border="0" width="16"/>
+	</button>
+	</div>	
+	<!-- Begin General Info Controller -->
+	<div ng-controller="GeneralInfoController">
+		<div class="col-md-12"> 
+			<br></br>
+			<div class="col-md-6"> 
+			<div class="panel panel-default" id="general-info-panel-div">
+			 	<div class="panel-heading">
+			  		<h3 class="panel-title">General Info</h3>
+				</div>
+				<div class="panel-body">
+
+					<div class="row">
+						<div class="form-group col-md-10">
+							<label for="student-name">Name</label>
+							<input type="text" class="form-control element_reference_input" id="student-name" readonly="true"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-10">
+							<label for="student-adress">Address</label>
+							<input type="text" class="form-control" id="student-address"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label for="student-email">Email</label>
+							<input type="text" class="form-control" id="student-email"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="student-phone">Phone</label>
+							<input type="text" class="form-control " id="student-phone"/>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-md-10">
+							<label for="student-major">Major</label>
+							<input type="text" class="form-control" id="student-major" style="width: 50%;" 
+									onfocus="showHelpText('student-major-help','true')" onblur="showHelpText('student-major-help', 'false')"/>
+							<div class="helptextHidden" id="student-major-help">
+  								<p style="color: #024fa1;">&#9658; If undecided, enter "undeclared"</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="form-group col-md-10">
+							<label for="student-class-level">Class level</label>
+							<input type="text" class="form-control" id="student-class-level" style="width: 50%;"
+								onfocus="showHelpText('student-class-level-help','true')" onblur="showHelpText('student-class-level-help', 'false')"/>
+							<div class="helptextHidden" id="student-class-level-help">
+  								<p style="color: #024fa1;">&#9658; Example: Freshman, Sophmore, Junior, Senior</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="student-grad-date">Expected graduation date</label>
+							<select class="form-control cat_item_option" id="student-grad-date">
+								<option selected="SELECTED"></option>
+								<option value="Spring 2017">Spring 2017</option>
+								<option value="Fall 2017">Fall 2017</option>
+								<option value="Spring 2018">Spring 2018</option>
+								<option value="Fall 2018">Fall 2018</option>
+								<option value="Spring 2019">Spring 2019</option>
+								<option value="Fall 2019">Fall 2019</option>
+								<option value="Spring 2020">Spring 2020</option>
+								<option value="Fall 2020">Fall 2020</option>
+								<option value="Spring 2021">Spring 2021</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-10">
+							<label for="student-units">Units enrolled</label>
+							<input type="text" class="form-control" id="student-units" style="width:50%;"
+								onfocus="showHelpText('student-units-help','true')" onblur="showHelpText('student-units-help', 'false')"/>
+							<div class="helptextHidden" id="student-units-help">
+  								<p style="color: #024fa1;">&#9658; Number of enrolled units for the semester you are applying to begin employment</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-10">
+							<label for="student-gpa">GPA</label>
+							<input type="text" class="form-control" id="student-gpa" style="width:40%;"
+								onfocus="showHelpText('student-gpa-help','true')" onblur="showHelpText('student-gpa-help', 'false')"/>
+							<div class="helptextHidden" id="student-gpa-help">
+  								<p style="color: #024fa1;">&#9658; Provide previous college or high school GPA if this is your first semester at Sac State</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-10">
+							<label for="student-position">Position(s) you are applying for</label>
+							<input type="text" class="form-control" id="student-position" style="width:40%;"
+								onfocus="showHelpText('student-position-help','true')" onblur="showHelpText('student-position-help', 'false')"/>
+							<div class="helptextHidden" id="student-position-help">
+  								<p style="color: #024fa1;">&#9658; Enter "any" for any open position</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+			<br></br>
+			</div>
+		</div>
+<br></br>
+		<div class="col-md-12">
+			<!--Questions-->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				  		<h3 class="panel-title">Questions</h3>
+					</div>
+					<div class="panel-body">
+						<div ng-repeat="q in data.questions track by $index">
+							<!-- Switch statement determines what html should be displayed based on the question type
+							Question types are set in the angular controller. Child questions depend on a Yes or No answer
+							within the parent question. -->
+							<div ng-switch="" on="q.type">
+							<!--Radio Switch-->
+								<div ng-switch-when='radio'>
+									<div class="row col-md-10 cool" id="{{q.id}}-div">
+										<label>{{q.question}}</label>
+										<div class="form-group">
+											<div class="row">
+												<span class="input-group-radio col-md-10">
+													<input id="{{q.id}}-yes" class="radio" ng-model="q.answer" ng-value="'true'" type="radio" name="{{q.id}}" checked="false"/>
+													<label for="{{q.id}}-yes" class="radio-label">Yes</label>
+												</span> 
+											</div>
+											<div class="row">
+												<span class="input-group-radio col-md-10"> 
+													<input id="{{q.id}}-no" class="radio" type="radio" ng-model="q.answer" ng-value="false" name="{{q.id}}" checked="false"/>
+													<label for="{{q.id}}-no" class="radio-label">No</label>
+												</span> 
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							<!-- Text Area Child Switch -->
+								<div ng-switch-when='textarea_child'>
+									<div class="form-group col-md-10" ng-if="findParent(q.parent).answer == 'true'">
+										<div class="row">
+											<label for="{{q.id}}-details" class="textarea-label">{{q.question}}</label>
+										</div>
+										<div class="row"> 
+											<input class ="form-control" id="{{q.id}}-details" ng-model="q.answer" type="textarea"/>
+										</div>
+									</div>
+								</div>
+							<!-- Text Switch -->
+								<div ng-switch-when='text'>
+									<div class="form-group col-md-10">
+										<div class="row">
+											<label for="{{q.id}}-details" class="radio-label">{{q.question}}</label>
+										</div>
+										<div class="row">
+											<input class ="form-control" id="{{q.id}}-details" ng-model="q.answer" type="text"/>
+										</div>
+									</div>
+								</div>
+								<!-- Text Child Switch -->
+								<div ng-switch-when='text_child'>
+									<div class="form-group col-md-10" ng-if="findParent(q.parent).answer == 'true'">
+										<div class="row">
+											<label for="{{q.id}}-details" class="textarea-label">{{q.question}}</label>
+										</div>
+										<div class="row">
+											<input class ="form-control" id="{{q.id}}-details" ng-model="q.answer" type="text"/>
+										</div>
+									</div>
+								</div>
+								<!-- Text Switch -->
+								<div ng-switch-when='date'>
+									<div class="form-group col-md-10">
+										<div class="row">
+											<label for="{{q.id}}-details" class="radio-label">{{q.question}}</label>
+										</div>
+										<div class="row">
+											<input class ="form-control" id="{{q.id}}-details" ng-model="q.answer" type="date"/>
+										</div>
+									</div>
+								</div>
+								<!-- DEFAULT -->
+								<div ng-switch-default="">
+									<p>ERROR</p>
+								</div>
+							</div> <!-- End Switch -->
+						</div> <!-- End Repeat -->
+
+
+					</div><!-- End Panel Body-->
+				</div><!-- End Panel -->
+			</div>
+		</div>
+		<div class="row">
+			<input type="hidden" id="questions_all" value=" {{data.questions}}"/>
+		</div>
+
+	</div><!-- End Controller -->
+
+</div>
+
+	<!-- Employment History-->
+	
+<div class="row col-md-10" id="employment-history-div">
+	<h1>Employment History</h1>
+	<p>Describe your complete employment history. List your present/most recent employer first. You may include volunteer experience.</p>
+	
+	<div ng-controller="EmploymentController">
+	<!-- REPEAT based on amount of employers -->
+
+		<div class="col-md-6" ng-repeat="emp in employers.data track by $index">
+			<div class="panel panel-default">
+				<button type="button" aria-label="Close" ng-click="close($index)" class="btn btn-close pull-right">
+                    <span aria-hidden="true">x</span>
+                </button>
+			 	<div class="panel-heading">
+			  		<h3 class="panel-title">Employer Details</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row" style="">
+						<div class="form-group col-md-7">
+							<label for="employerName">Employer</label>
+							<input type="text" class="form-control" ng-model="emp.name" id="employerName"/>
+						</div>
+						<div class="form-group col-md-10">
+							<label for="employerAddress">Address</label>
+							<input type="text" class="form-control" ng-model="emp.address" id="employerAddress"/>
+						</div>
+						<div class="form-group col-md-7">
+							<label for="employerTitle">Immediate supervisor and title</label>
+							<input type="text" class="form-control" ng-model="emp.supervisor" id="employerTitle"/>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="employerPhone">Phone</label>
+							<input type="text" class="form-control" ng-model="emp.phone" id="employerPhone"/>
+						</div>
+					</div>
+				<div>
+					<hr></hr>
+				</div>
+					<div class="row" style="">
+						<div class="form-group col-md-6">
+							<label for="employerJobTitle">Your job title</label>
+							<input type="text" class="form-control" ng-model="emp.jobTitle" id="employerJobTitle"/>
+						</div>
+						<div class="form-group col-md-4">
+								<label for="employerHoursPerWeek">Hours per week</label>
+								<input type="text" class="form-control" ng-model="emp.hours" id="employerHoursPerWeek" style="width: 50%;"/>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="employerSalaryStart">Beginning salary</label>
+							<input type="text" class="form-control" ng-model="emp.salaryStart" id="employerSalaryStart"/>
+						</div>
+						<div class="form-group col-md-4 col-md-offset-3">
+							<label for="employerSalaryEnd">Ending salary</label>
+							<input type="text" class="form-control" ng-model="emp.salaryEnd" id="employerSalaryEnd"/>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="employerDateStart">Start date</label>
+							<!-- Date input type format doesn't work with angular. Must find workaround. Also, firefox doesn't support the html5 date type! (why) -->
+							<input type="text" class="form-control" ng-model="emp.dateStart"  id="employerDateStart" placeholder="mm/dd/yyyy"/>
+						</div>
+						<div class="form-group col-md-4 col-md-offset-3">
+							<label for="employerDateEnd">End date</label>
+							<input type="text" class="form-control" ng-model="emp.dateEnd" id="employerDateEnd" placeholder="mm/dd/yyyy"/>
+						</div>
+						
+					</div>
+
+					<div class="row">
+						
+						<div class="form-group col-md-11">
+							<label for="employerJobDuties">Job duties</label>
+							<textarea class="form-control" ng-model="emp.jobDuties" id="employerJobDuties" 
+								placeholder="Brief statement; be sure to list all duties related to this position">
+							</textarea>
+						</div>
+						<div class="form-group col-md-11">
+							<label for="employerReasonForLeaving">Reason for leaving</label>
+							<textarea class="form-control" ng-model="emp.reasonForLeaving" id="employerReasonForLeaving">
+							</textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- End Repeat -->
+		<br></br>
+		<br></br>
+		<div class="row col-md-12">
+			<button class="btn-secondary" ng-click="addAdditionalEmployer()"> Add Additional Employer </button>
+		</div>
+		<!-- Hidden Class captures all the data inputed by the user in the fields.
+			Then this data can be stored in a hidden record producer variable, allowing the data
+			to be stored in the table itself. 
+			-->
+		<div class="row">
+			<input type="hidden" id="employers_all" value="{{employers.data}}"/>
+		</div>
+		
+	</div> <!-- END EMPLOYER CONTROLLER -->
+</div> <!-- END EMPLOYMENT HISTORY -->
+	
+<!-- References-->
+<div class="row col-md-8" id="references-div">
+	<h1>References</h1>
+	<p>List a minimun of two people not related to you who can attest to your work abilities and personal character. A current letter of recommendation applicable to this position must accompany application for each foreign-based references.</p>
+	
+	<div ng-controller="ReferenceController">
+	<!-- Repeats based on amount of references -->
+		<div ng-repeat="ref in references.data track by $index">
+			<div class="panel panel-default">
+				<button type="button" aria-label="Close" ng-click="close($index)" class="btn btn-close pull-right">
+                    <span aria-hidden="true">x</span>
+                </button>
+			 	<div class="panel-heading">
+			  		<h3 class="panel-title">Reference</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group col-xs-4">
+							<label for="refName">Name</label>
+							<input type="text" ng-model="ref.name" class="form-control" id="refName"/>
+						</div>
+						<div class="form-group col-md-4 col-md-offset-3">
+							<label for="refRelation">Relationship to applicant</label>
+							<input type="text" ng-model="ref.relationship" class="form-control" id="refRelation"/>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="refAddress">Address</label>
+							<input type="text" ng-model="ref.address" class="form-control" id="refAddress"/>
+						</div>
+						<div class="form-group col-md-4 col-md-offset-3">
+							<label for="refPhone">Phone</label>
+							<input type="text" ng-model="ref.phone" class="form-control" id="refPhone"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- End Repeat -->
+		<div class="row">
+			<button class="btn-secondary" ng-click="addAdditionalReference()"> Add Additional Reference </button>
+		</div>
+		<div class="row">
+			<input type="hidden" id="references_all" value=" {{references.data}}"/>
+		</div>
+	</div>
+	</div>
+	<!-- END REF CONTROLLER -->
+
+<br></br>
+<br></br>
+
+
+
+
+<!-- Personal History-->
+<div class="row col-md-10" id="personal-history-div">
+	<h1>Personal History</h1>
+	<p>Please list <b>three</b> personal strengths and <b>three</b> areas which might need improvement. </p>
+	<div ng-controller="PersonalHistoryController">
+		<div class="col-md-6">
+				<div class="panel panel-default">
+				 	<div class="panel-heading">
+				  		<h3 class="panel-title">Personal Strengths</h3>
+					</div>
+					<div class="panel-body">
+						<div ng-repeat="s in data.strengths track by $index">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="pHistoryStrength" class="col-md-1 control-label">{{$index + 1}}</label>
+									<div class="form-group col-xs-11">
+										<input type="text" ng-model="s.strength" class="form-control" id="pHistoryStrength"/>
+									</div>
+								</div>
+							</div>
+						</div><!--End Repeat-->
+					</div>
+				</div>
+			<div class="row">
+				<input type="hidden" id="p_history_strength_all" value=" {{data.strengths}}"/>
+			</div>
+		</div>
+		<div class="col-md-6">
+				<div class="panel panel-default">
+				 	<div class="panel-heading">
+				  		<h3 class="panel-title">Areas of Improvement</h3>
+					</div>
+					<div class="panel-body">
+						<div ng-repeat="weak in data.weaknesses track by $index">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="pHistoryWeakness" class="col-md-1 control-label">{{$index + 1}}</label>
+									<div class="form-group col-xs-11">
+										<input type="text" ng-model="weak.weakness" class="form-control" id="pHistoryWeakness"/>
+									</div>
+								</div>
+							</div>
+						</div><!--End Repeat-->
+					</div>
+				</div>
+			<div class="row">
+				<input type="hidden" id="p_history_weakness_all" value=" {{data.weakness}}"/>
+			</div>
+		</div>
+
+		<br></br>
+		<br></br>
+
+
+		<div class="col-md-12">
+			<div class="panel panel-default">
+			 	<div class="panel-heading">
+			  		<h3 class="panel-title"></h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="skills">
+								Please list your skills and additional qualifications which you feel having special bearing on this position. You may include computer courses, training, or relevant certification.
+							</label>
+							<textarea class="form-control" ng-model="data.skills.text" id="skills" 
+								style="height: 100px;" placeholder="">
+							</textarea>
+						</div>
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="customerService">Briefly describe a situation in which you provided excellent customer service</label>
+							<textarea class="form-control" ng-model="data.customerService.text" id="customerService" 
+								style="height: 100px;" placeholder="">
+							</textarea>
+						</div>
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="desires">Information Resource and Technology believes that all student assistants should
+							 not only contribute to the department, but gain knowledge and skills that will help them to contribute
+							  to other organizations throughout their lives. What knowledge and skills would you especially like 
+							  to acquire from working at Information Resources and Technology?
+							</label>
+							<textarea class="form-control" ng-model="data.desires.text" id="desires" 
+								style="height: 100px;" placeholder="">
+							</textarea>
+						</div>
+					</div>
+					
+	
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+				<input type="hidden" id="p_history_desires" value=" {{ data.desires }}"/>
+		</div>
+		<div class="row">
+				<input type="hidden" id="personal_history_all" value=" {{ data}}"/>
+		</div>
+
+	</div><!-- END PERSONAL HISTORY CONTROLLER -->
+	</div>
+
+
+
+	<!--START AVAILABILITY -->
+
+	<div class="row col-md-10" id="availability-div">
+		<h1>Availability</h1>
+		<p>Provide your schedule of availability below. Students are allowed to work up to 20 hours per week. 
+			Include a fifteen minute buffer before and after class.</p>
+	<div ng-controller="AvailabilityController" class="col-md-10">
+		<table class="w">
+			<thead>
+				<tr>
+					<th class="n">Time</th>
+					<th class="n">Monday</th>
+					<th class="n">Tuesday</th>
+					<th class="n">Wednesday</th>
+					<th class="n">Thursday</th>
+					<th class="n">Friday</th>
+					<th class="n">Saturday</th>
+					<th class="n">Sunday</th>
+				</tr>
+			</thead>
+
+			<!--
+				For each timeslot, a row is created with checkboxes for each day.
+				Uses the variable "time" to find the array index of each day (ng-click)
+			-->
+
+			<tr ng-repeat="time in minuteIncrements track by $index">
+				<td>
+				<h4 class="scheduler">{{timeFormatted[time]}}</h4>
+				</td>
+				<td class="n checkboxFour">
+			  			<input type="checkbox" class="c" value="monday" ng-Click = "timeKeeper.monday[time] = !timeKeeper.monday[time]"
+			  			 id="cb_monday_{{time}}" name="" />
+				  		<label for="cb_monday_{{time}}"></label>
+				</td>
+				<td class="n checkboxFour">
+			  			<input type="checkbox" class="c" value="tuesday" ng-Click = "timeKeeper.tuesday[time] = !timeKeeper.tuesday[time]"
+			  			 id="cb_tuesday_{{time}}" name="" />
+				  		<label for="cb_tuesday_{{time}}"></label>
+				</td>
+				<td class="n checkboxFour">
+			  			<input type="checkbox" class="c" value="wednesday" ng-Click = "timeKeeper.wednesday[time] = !timeKeeper.wednesday[time]"
+			  			 id="cb_wednesday_{{time}}" name="" />
+				  		<label for="cb_wednesday_{{time}}"></label>
+				</td>
+				<td class="n checkboxFour">
+			  			<input type="checkbox" class="c" value="thursday" ng-Click = "timeKeeper.thursday[time] = !timeKeeper.thursday[time]" 
+			  			id="cb_thursday_{{time}}" name="" />
+				  		<label for="cb_thursday_{{time}}"></label>
+				</td>
+				<td class="n checkboxFour">
+			  			<input type="checkbox" class="c" value="friday" ng-Click = "timeKeeper.friday[time] = !timeKeeper.friday[time]"
+			  			 id="cb_friday_{{time}}" name="" />
+				  		<label for="cb_friday_{{time}}"></label>
+				</td>
+				<td class="n checkboxFour">
+			  			<input type="checkbox" class="c" value="saturday" ng-Click = "timeKeeper.saturday[time] = !timeKeeper.saturday[time]"
+			  			 id="cb_saturday_{{time}}" name="" />
+				  		<label for="cb_saturday_{{time}}"></label>
+				</td>
+				<td class="n checkboxFour">
+			  			<input type="checkbox" class="c" value="sunday" ng-Click = "timeKeeper.sunday[time] = !timeKeeper.sunday[time]"
+			  			 id="cb_sunday_{{time}}" name="" />
+				  		<label for="cb_sunday_{{time}}"></label>
+				</td>
+			</tr> <!-- End Repeat -->
+			
+		</table>
+		<!-- TEMP TESTING REMOVE -->
+		<br></br>
+		<br></br>
+		<div>
+		<div class="row">
+				<input type="hidden" id="schedule_values_all" value=" {{ timeKeeper }}"/>
+		</div>
+		</div>
+	</div>
+	</div> <!-- END Availibity -->
+	
+</div> <!--END NG-APP (all Angular ng stuff should be before the end of this div) -->
+	
+<br></br>
+
+<!-- Created By Gregory Guzman lolz -->
+</j:jelly>]]></html>
+        <name>student_app_main_page</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-01-05 20:40:20</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>d1ce15476f883200ad6cd4a21c3ee49e</sys_id>
+        <sys_mod_count>695</sys_mod_count>
+        <sys_name>student_app_main_page</sys_name>
+        <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
+        <sys_update_name>sys_ui_page_d1ce15476f883200ad6cd4a21c3ee49e</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-04-06 21:20:23</sys_updated_on>
+    </sys_ui_page>
+</record_update>

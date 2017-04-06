@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="data_availability" label="Data availability" language="en" table="x_casus_irt_studen_student_employee_applications">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>data_availability</element>
+            <help/>
+            <hint/>
+            <label>Data availability</label>
+            <language>en</language>
+            <name>x_casus_irt_studen_student_employee_applications</name>
+            <plural>Data availabilities</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-01-27 23:30:44</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>6a291f0e0fa87a0012e4348ce1050e4c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Data availability</sys_name>
+            <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
+            <sys_update_name>sys_documentation_x_casus_irt_studen_student_employee_applications_data_availability_en</sys_update_name>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-01-27 23:30:44</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
