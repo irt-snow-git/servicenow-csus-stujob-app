@@ -394,9 +394,7 @@ if (userAgent .indexOf('safari')!=-1){
        }else if((userAgent .indexOf('opera')  > -1)||(userAgent .indexOf('opr')  > -1)){
          //browser is opera 
        }else{
-		   alert("safari");
-	fixSafariCSS();
-
+		fixSafariCSS();//Fix safari specific css problems
        }
     }
 }
@@ -622,7 +620,7 @@ h4.scheduler {
 		We hire students in part-time positions for up to 20 hours a week. All positions are customer service oriented, have an emphasis on team work, and include the opportunity to work on individual projects. 
 	</p>
 	<p> Current job postings are available on the <b>Hornet Career Connection Web Site</b>
-		at: <a herf="http://www.csus.edu/careercenter/students/career%20connections" target="_blank">Hornet Career Center</a>
+		at: http://www.csus.edu/careercenter/students/career%20connection/
 	</p>
 		
 	<p> Descriptions and requirements for the student assistant positions are available at 
@@ -1212,7 +1210,7 @@ h4.scheduler {
         <sys_created_on>2017-01-05 20:40:20</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>d1ce15476f883200ad6cd4a21c3ee49e</sys_id>
-        <sys_mod_count>695</sys_mod_count>
+        <sys_mod_count>699</sys_mod_count>
         <sys_name>student_app_main_page</sys_name>
         <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
         <sys_policy/>
@@ -1220,6 +1218,6 @@ h4.scheduler {
         <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
         <sys_update_name>sys_ui_page_d1ce15476f883200ad6cd4a21c3ee49e</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-04-06 21:20:23</sys_updated_on>
+        <sys_updated_on>2017-04-06 21:45:51</sys_updated_on>
     </sys_ui_page>
 </record_update>
