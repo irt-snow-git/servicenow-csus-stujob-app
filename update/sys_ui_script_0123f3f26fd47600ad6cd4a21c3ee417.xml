@@ -2,15 +2,13 @@
 <record_update table="sys_ui_script">
     <sys_ui_script action="INSERT_OR_UPDATE">
         <active>true</active>
-        <description>Angular controllers for various section containers on record producer view.</description>
+        <description>Angular controllers for various section containers on record producer view.&#13;
+&#13;
+Lots of duplicate code; should be optimized sometime...</description>
         <global>false</global>
         <name>x_casus_irt_studen.angular_controller</name>
         <script><![CDATA[var myApp = angular.module('myApp', []);
-/*Controller Names
-- Reference Controller
-- EmploymentController
 
-*/
 
 //Start General Info Controller//
 myApp.controller('GeneralInfoController', ['$scope', function ($scope) {
@@ -36,7 +34,7 @@ myApp.controller('GeneralInfoController', ['$scope', function ($scope) {
 		"parent": "question_2",
 		"answer": ""
 	},{
-		"question": "Will you be employed by another oncampus department during the academic year?",
+		"question": "Will you be employed by another on-campus department during the academic year?",
 		"id": 'question_3',
 		"type": "radio",
 		"answer": "null"
@@ -63,7 +61,7 @@ myApp.controller('GeneralInfoController', ['$scope', function ($scope) {
 		"type":"radio",
 		"answer": "null"
 	},{
-		"question": "Languages you speak, read or write fluenty",
+		"question": "Languages you speak, read or write fluently",
 		"id": "question_7",
 		"type":"text",
 		"answer": ""
@@ -86,6 +84,7 @@ myApp.controller('GeneralInfoController', ['$scope', function ($scope) {
 //END General Info Controller//
 
 //Start Reference Controller//
+
 myApp.controller('ReferenceController', ['$scope', function ($scope) {
     
 	$scope.references = {};//Master object to hold data
@@ -115,6 +114,7 @@ myApp.controller('ReferenceController', ['$scope', function ($scope) {
 			};
 			//Push blank data to our array (angular will render more fields)
 			$scope.references.data.push(ref);
+			$scope.focusIndex = $scope.references.data.length-1;
 			return true;
 		} else {
 			//Too many references already added, can't add more
@@ -128,7 +128,26 @@ myApp.controller('ReferenceController', ['$scope', function ($scope) {
 		$scope.references.data.splice(index,1);
 	};
 	
-}]);
+}])
+
+//This is used to autofocus the first field after dynamically adding a new reference or employer
+//Place custom-autofocus html attribute into the desired field like so custom-autofocus="$index == focusIndex"
+//Must be used in ng-repeat
+.directive('customAutofocus', function() {
+  return{
+         restrict: 'A',
+
+         link: function(scope, element, attrs){
+           scope.$watch(function(){
+             return scope.$eval(attrs.customAutofocus);
+             },function (newValue){
+               if (newValue == true){
+                   element[0].focus();
+               }
+           });
+         }
+     };
+});
 //END Reference Controller//
 
 
@@ -200,6 +219,7 @@ myApp.controller('EmploymentController', ['$scope', function ($scope) {
 			};
 			//Push blank data to our array (angular will render more fields)
 			$scope.employers.data.push(emp);
+			$scope.focusIndex = $scope.employers.data.length-1;
 			return true;
 		} else {
 			//Too many employers already added, can't add more
@@ -215,7 +235,26 @@ myApp.controller('EmploymentController', ['$scope', function ($scope) {
 		$scope.employers.data.splice(index,1);
 	};
 	
-}]); 
+}])
+
+//This is used to autofocus the first field after dynamically adding a new reference or employer
+//Place custom-autofocus html attribute into the desired field like so custom-autofocus="$index == focusIndex"
+//Must be used in ng-repeat
+.directive('customAutofocus', function() {
+  return{
+         restrict: 'A',
+
+         link: function(scope, element, attrs){
+           scope.$watch(function(){
+             return scope.$eval(attrs.customAutofocus);
+             },function (newValue){
+               if (newValue == true){
+                   element[0].focus();
+               }
+           });
+         }
+     };
+}); 
 //END EMPLOYMENT CONTROLLER//
 
 //Start Personal History Controller//
@@ -306,7 +345,7 @@ myApp.controller('AvailabilityController', ['$scope', function ($scope) {
         <sys_created_on>2017-01-17 23:04:48</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>0123f3f26fd47600ad6cd4a21c3ee417</sys_id>
-        <sys_mod_count>110</sys_mod_count>
+        <sys_mod_count>115</sys_mod_count>
         <sys_name>x_casus_irt_studen.angular_controller</sys_name>
         <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
         <sys_policy/>
@@ -314,7 +353,7 @@ myApp.controller('AvailabilityController', ['$scope', function ($scope) {
         <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
         <sys_update_name>sys_ui_script_0123f3f26fd47600ad6cd4a21c3ee417</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-03-15 20:05:42</sys_updated_on>
+        <sys_updated_on>2017-04-12 18:23:42</sys_updated_on>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
 </record_update>

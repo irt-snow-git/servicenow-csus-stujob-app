@@ -207,8 +207,7 @@ function saveFieldData() {
 	g_form.setValue('student_class_level',val,val);
 	fields['student-class-level'] = val;
 	///////Selected element is different maybe idk
-	val = document.getElementById("student-grad-date");
-	val = val.options[val.selectedIndex].value;
+	val = document.getElementById("student-grad-date").value;
 	g_form.setValue('student_expected_grad_date',val,val);
 	fields['student-grad-date'] = val;
 	
@@ -369,7 +368,7 @@ Classes for breadcrumbs are 'completed', 'completed disabled', 'disabled', 'acti
 		hideDataVariables();
 		<!-- add listener for mouse click events to parent of list objects -->
 		//document.getElementById("nav_breadcrumb_bar").addEventListener( 'click', changePage);
-		modifySubmitButton();//Removes default submit buttton
+		modifySubmitButton();//Removes default submit buttton (broken on safari)
 		//initHideSections();//hides the divs for each sections initially when page is loaded
 
 	   	var userName = g_user.userName;
@@ -616,7 +615,7 @@ h4.scheduler {
 
 <div class="row col-md-10" id="general-info-div">
 	<h1> Instructions and Information</h1>
-	<p> Thank you for your interest in Information and Resources and Technology (IRT)
+	<p> Thank you for your interest in Information and Resources and Technology (IRT).
 		We hire students in part-time positions for up to 20 hours a week. All positions are customer service oriented, have an emphasis on team work, and include the opportunity to work on individual projects. 
 	</p>
 	<p> Current job postings are available on the <b>Hornet Career Connection Web Site</b>
@@ -630,7 +629,6 @@ h4.scheduler {
 		<ul>
 			<li>If an area does not apply, please indicate "N/A" and, if warranted, explain in cover letter.</li>
 			<li>A resume cannot be used in lieu of employment history.</li>
-			<li>Applications and supporting materials will not be returned.</li>
 			<li>Applications will be screened for the best qualified candidates. Applicants to be interviewed will be contacted
 				by email and/or phone. </li>
 			<li>Student employment is at the mutual consent of both the department and the student. Employment may be terminated by either party "at will" with or without cause or notice.</li>
@@ -638,6 +636,7 @@ h4.scheduler {
 	</p>
 	<!-- Attachment Button-->
 	<div class="row col-md-12">
+		<p><b>Optional:</b> Upload a résumé, cover letter, or supporting documentation </p>
 	<button class="btn-secondary" onclick="saveCatAttachment(gel('sysparm_item_guid').value, 'x_casus_irt_studen_student_employee_applications')">
 		Upload Attachment
 		<img title="Attachments..." height="16" src="images/icons/attachment.gifx" border="0" width="16"/>
@@ -662,7 +661,7 @@ h4.scheduler {
 					</div>
 					<div class="row">
 						<div class="form-group col-md-10">
-							<label for="student-adress">Address</label>
+							<label for="student-address">Address</label>
 							<input type="text" class="form-control" id="student-address"/>
 						</div>
 					</div>
@@ -683,7 +682,8 @@ h4.scheduler {
 						<div class="form-group col-md-10">
 							<label for="student-major">Major</label>
 							<input type="text" class="form-control" id="student-major" style="width: 50%;" 
-									onfocus="showHelpText('student-major-help','true')" onblur="showHelpText('student-major-help', 'false')"/>
+									onfocus="showHelpText('student-major-help','true')" onblur="showHelpText('student-major-help', 'false')"
+								   aria-describedby="student-major-help"/>
 							<div class="helptextHidden" id="student-major-help">
   								<p style="color: #024fa1;">&#9658; If undecided, enter "undeclared"</p>
 							</div>
@@ -694,34 +694,30 @@ h4.scheduler {
 						<div class="form-group col-md-10">
 							<label for="student-class-level">Class level</label>
 							<input type="text" class="form-control" id="student-class-level" style="width: 50%;"
-								onfocus="showHelpText('student-class-level-help','true')" onblur="showHelpText('student-class-level-help', 'false')"/>
+								onfocus="showHelpText('student-class-level-help','true')" onblur="showHelpText('student-class-level-help', 'false')"
+								   aria-describedby="student-class-level-help"/>
 							<div class="helptextHidden" id="student-class-level-help">
-  								<p style="color: #024fa1;">&#9658; Example: Freshman, Sophmore, Junior, Senior</p>
+  								<p style="color: #024fa1;">&#9658; Example: Freshman, Sophmore, Junior, Senior, Graduate</p>
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-10">
 							<label for="student-grad-date">Expected graduation date</label>
-							<select class="form-control cat_item_option" id="student-grad-date">
-								<option selected="SELECTED"></option>
-								<option value="Spring 2017">Spring 2017</option>
-								<option value="Fall 2017">Fall 2017</option>
-								<option value="Spring 2018">Spring 2018</option>
-								<option value="Fall 2018">Fall 2018</option>
-								<option value="Spring 2019">Spring 2019</option>
-								<option value="Fall 2019">Fall 2019</option>
-								<option value="Spring 2020">Spring 2020</option>
-								<option value="Fall 2020">Fall 2020</option>
-								<option value="Spring 2021">Spring 2021</option>
-							</select>
+							<input type="text" class="form-control" id="student-grad-date" style="width:50%;"
+								   onfocus="showHelpText('student-grad-help','true')" onblur="showHelpText('student-grad-help', 'false')"
+								    aria-describedby="student-grad-help"/>
+							<div class="helptextHidden" id="student-grad-help">
+  								<p style="color: #024fa1;">&#9658; Example: Fall 2020, Spring 2021</p>
+							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-10">
 							<label for="student-units">Units enrolled</label>
 							<input type="text" class="form-control" id="student-units" style="width:50%;"
-								onfocus="showHelpText('student-units-help','true')" onblur="showHelpText('student-units-help', 'false')"/>
+								onfocus="showHelpText('student-units-help','true')" onblur="showHelpText('student-units-help', 'false')"
+								   aria-describedby="student-units-help"/>
 							<div class="helptextHidden" id="student-units-help">
   								<p style="color: #024fa1;">&#9658; Number of enrolled units for the semester you are applying to begin employment</p>
 							</div>
@@ -731,7 +727,8 @@ h4.scheduler {
 						<div class="form-group col-md-10">
 							<label for="student-gpa">GPA</label>
 							<input type="text" class="form-control" id="student-gpa" style="width:40%;"
-								onfocus="showHelpText('student-gpa-help','true')" onblur="showHelpText('student-gpa-help', 'false')"/>
+								onfocus="showHelpText('student-gpa-help','true')" onblur="showHelpText('student-gpa-help', 'false')"
+								   aria-describedby="student-gpa-help"/>
 							<div class="helptextHidden" id="student-gpa-help">
   								<p style="color: #024fa1;">&#9658; Provide previous college or high school GPA if this is your first semester at Sac State</p>
 							</div>
@@ -739,9 +736,10 @@ h4.scheduler {
 					</div>
 					<div class="row">
 						<div class="form-group col-md-10">
-							<label for="student-position">Position(s) you are applying for</label>
+							<label for="student-position">Positions you are applying for</label>
 							<input type="text" class="form-control" id="student-position" style="width:40%;"
-								onfocus="showHelpText('student-position-help','true')" onblur="showHelpText('student-position-help', 'false')"/>
+								onfocus="showHelpText('student-position-help','true')" onblur="showHelpText('student-position-help', 'false')"
+								   aria-describedby="student-position-help"/>
 							<div class="helptextHidden" id="student-position-help">
   								<p style="color: #024fa1;">&#9658; Enter "any" for any open position</p>
 							</div>
@@ -769,20 +767,16 @@ h4.scheduler {
 							<div ng-switch="" on="q.type">
 							<!--Radio Switch-->
 								<div ng-switch-when='radio'>
-									<div class="row col-md-10 cool" id="{{q.id}}-div">
+									<div class="row col-md-10 cool form-group input-group-radio" id="{{q.id}}-div">
 										<label>{{q.question}}</label>
-										<div class="form-group">
+										<div class=" col-md-10">
 											<div class="row">
-												<span class="input-group-radio col-md-10">
-													<input id="{{q.id}}-yes" class="radio" ng-model="q.answer" ng-value="'true'" type="radio" name="{{q.id}}" checked="false"/>
-													<label for="{{q.id}}-yes" class="radio-label">Yes</label>
-												</span> 
+												<input id="{{q.id}}-yes" class="radio" ng-model="q.answer" ng-value="'true'" type="radio" name="{{q.id}}" checked="false"/>
+												<label for="{{q.id}}-yes" class="radio-label">Yes</label>
 											</div>
 											<div class="row">
-												<span class="input-group-radio col-md-10"> 
-													<input id="{{q.id}}-no" class="radio" type="radio" ng-model="q.answer" ng-value="false" name="{{q.id}}" checked="false"/>
-													<label for="{{q.id}}-no" class="radio-label">No</label>
-												</span> 
+												<input id="{{q.id}}-no" class="radio" type="radio" ng-model="q.answer" ng-value="false" name="{{q.id}}" checked="false"/>
+												<label for="{{q.id}}-no" class="radio-label">No</label>
 											</div>
 										</div>
 									</div>
@@ -873,7 +867,7 @@ h4.scheduler {
 					<div class="row" style="">
 						<div class="form-group col-md-7">
 							<label for="employerName">Employer</label>
-							<input type="text" class="form-control" ng-model="emp.name" id="employerName"/>
+							<input type="text" class="form-control" ng-model="emp.name" id="employerName" custom-autofocus="$index == focusIndex"/>
 						</div>
 						<div class="form-group col-md-10">
 							<label for="employerAddress">Address</label>
@@ -957,7 +951,7 @@ h4.scheduler {
 <!-- References-->
 <div class="row col-md-8" id="references-div">
 	<h1>References</h1>
-	<p>List a minimun of two people not related to you who can attest to your work abilities and personal character. A current letter of recommendation applicable to this position must accompany application for each foreign-based references.</p>
+	<p>List a minimun of two people not related to you who can attest to your work abilities and personal character.</p>
 	
 	<div ng-controller="ReferenceController">
 	<!-- Repeats based on amount of references -->
@@ -973,7 +967,7 @@ h4.scheduler {
 					<div class="row">
 						<div class="form-group col-xs-4">
 							<label for="refName">Name</label>
-							<input type="text" ng-model="ref.name" class="form-control" id="refName"/>
+							<input type="text" ng-model="ref.name" class="form-control" id="refName" custom-autofocus="$index == focusIndex"/>
 						</div>
 						<div class="form-group col-md-4 col-md-offset-3">
 							<label for="refRelation">Relationship to applicant</label>
@@ -1024,7 +1018,7 @@ h4.scheduler {
 								<div class="form-group">
 									<label for="pHistoryStrength" class="col-md-1 control-label">{{$index + 1}}</label>
 									<div class="form-group col-xs-11">
-										<input type="text" ng-model="s.strength" class="form-control" id="pHistoryStrength"/>
+										<input type="text" ng-model="s.strength" class="form-control" id="pHistoryStrength" aria-label="Strength {{$index+1}}"/>
 									</div>
 								</div>
 							</div>
@@ -1046,7 +1040,7 @@ h4.scheduler {
 								<div class="form-group">
 									<label for="pHistoryWeakness" class="col-md-1 control-label">{{$index + 1}}</label>
 									<div class="form-group col-xs-11">
-										<input type="text" ng-model="weak.weakness" class="form-control" id="pHistoryWeakness"/>
+										<input type="text" ng-model="weak.weakness" class="form-control" id="pHistoryWeakness" aria-label="Strength {{$index+1}}"/>
 									</div>
 								</div>
 							</div>
@@ -1081,7 +1075,7 @@ h4.scheduler {
 					<hr></hr>
 					<div class="row">
 						<div class="form-group col-md-12">
-							<label for="customerService">Briefly describe a situation in which you provided excellent customer service</label>
+							<label for="customerService">Briefly describe a situation in which you provided excellent customer service.</label>
 							<textarea class="form-control" ng-model="data.customerService.text" id="customerService" 
 								style="height: 100px;" placeholder="">
 							</textarea>
@@ -1150,37 +1144,37 @@ h4.scheduler {
 				</td>
 				<td class="n checkboxFour">
 			  			<input type="checkbox" class="c" value="monday" ng-Click = "timeKeeper.monday[time] = !timeKeeper.monday[time]"
-			  			 id="cb_monday_{{time}}" name="" />
+			  			 id="cb_monday_{{time}}" name="" aria-label="Monday at {{timeFormatted[time]}}" />
 				  		<label for="cb_monday_{{time}}"></label>
 				</td>
 				<td class="n checkboxFour">
 			  			<input type="checkbox" class="c" value="tuesday" ng-Click = "timeKeeper.tuesday[time] = !timeKeeper.tuesday[time]"
-			  			 id="cb_tuesday_{{time}}" name="" />
+			  			 id="cb_tuesday_{{time}}" name="" aria-label="Tuesday at {{timeFormatted[time]}}" />
 				  		<label for="cb_tuesday_{{time}}"></label>
 				</td>
 				<td class="n checkboxFour">
 			  			<input type="checkbox" class="c" value="wednesday" ng-Click = "timeKeeper.wednesday[time] = !timeKeeper.wednesday[time]"
-			  			 id="cb_wednesday_{{time}}" name="" />
+			  			 id="cb_wednesday_{{time}}" name="" aria-label="Wednesday at {{timeFormatted[time]}}"/>
 				  		<label for="cb_wednesday_{{time}}"></label>
 				</td>
 				<td class="n checkboxFour">
 			  			<input type="checkbox" class="c" value="thursday" ng-Click = "timeKeeper.thursday[time] = !timeKeeper.thursday[time]" 
-			  			id="cb_thursday_{{time}}" name="" />
+			  			id="cb_thursday_{{time}}" name="" aria-label="Thursday at {{timeFormatted[time]}}" />
 				  		<label for="cb_thursday_{{time}}"></label>
 				</td>
 				<td class="n checkboxFour">
 			  			<input type="checkbox" class="c" value="friday" ng-Click = "timeKeeper.friday[time] = !timeKeeper.friday[time]"
-			  			 id="cb_friday_{{time}}" name="" />
+			  			 id="cb_friday_{{time}}" name="" aria-label="Friday at {{timeFormatted[time]}}"/>
 				  		<label for="cb_friday_{{time}}"></label>
 				</td>
 				<td class="n checkboxFour">
 			  			<input type="checkbox" class="c" value="saturday" ng-Click = "timeKeeper.saturday[time] = !timeKeeper.saturday[time]"
-			  			 id="cb_saturday_{{time}}" name="" />
+			  			 id="cb_saturday_{{time}}" name="" aria-label="Saturday at {{timeFormatted[time]}}"/>
 				  		<label for="cb_saturday_{{time}}"></label>
 				</td>
 				<td class="n checkboxFour">
 			  			<input type="checkbox" class="c" value="sunday" ng-Click = "timeKeeper.sunday[time] = !timeKeeper.sunday[time]"
-			  			 id="cb_sunday_{{time}}" name="" />
+			  			 id="cb_sunday_{{time}}" name="" aria-label="Sunday at {{timeFormatted[time]}}" />
 				  		<label for="cb_sunday_{{time}}"></label>
 				</td>
 			</tr> <!-- End Repeat -->
@@ -1201,7 +1195,7 @@ h4.scheduler {
 	
 <br></br>
 
-<!-- Created By Gregory Guzman lolz -->
+<!-- Created By Gregory Guzman - Version 1.0 -->
 </j:jelly>]]></html>
         <name>student_app_main_page</name>
         <processing_script/>
@@ -1210,7 +1204,7 @@ h4.scheduler {
         <sys_created_on>2017-01-05 20:40:20</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>d1ce15476f883200ad6cd4a21c3ee49e</sys_id>
-        <sys_mod_count>699</sys_mod_count>
+        <sys_mod_count>724</sys_mod_count>
         <sys_name>student_app_main_page</sys_name>
         <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
         <sys_policy/>
@@ -1218,6 +1212,6 @@ h4.scheduler {
         <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
         <sys_update_name>sys_ui_page_d1ce15476f883200ad6cd4a21c3ee49e</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-04-06 21:45:51</sys_updated_on>
+        <sys_updated_on>2017-04-12 18:24:06</sys_updated_on>
     </sys_ui_page>
 </record_update>
