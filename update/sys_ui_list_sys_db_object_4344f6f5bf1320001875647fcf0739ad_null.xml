@@ -13,10 +13,10 @@
             <sum>false</sum>
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>gg622</sys_created_by>
-            <sys_created_on>2016-12-06 19:22:22</sys_created_on>
+            <sys_created_on>2017-04-13 21:58:44</sys_created_on>
             <sys_customer_update>true</sys_customer_update>
             <sys_domain>global</sys_domain>
-            <sys_id>95ada2510f63ea0012e4348ce1050e66</sys_id>
+            <sys_id>37ecd2ea6f023240ad6cd4a21c3ee497</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>sys_dictionary</sys_name>
             <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
@@ -25,7 +25,7 @@
             <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
             <sys_update_name>sys_ui_list_sys_db_object_4344f6f5bf1320001875647fcf0739ad_null</sys_update_name>
             <sys_updated_by>gg622</sys_updated_by>
-            <sys_updated_on>2016-12-06 19:22:22</sys_updated_on>
+            <sys_updated_on>2017-04-13 21:58:44</sys_updated_on>
             <sys_user display_value="Gregory Guzman">8142eaf50a0a3c9e01c438429dc13efa</sys_user>
             <view display_value="Default view" name="NULL">Default view</view>
             <view_name/>

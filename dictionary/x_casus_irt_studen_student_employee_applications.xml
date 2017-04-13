@@ -15,7 +15,7 @@
         <element label="Data personal history" max_length="4000" name="data_personal_history" type="string"/>
         <element label="Data references" max_length="4000" name="data_references" type="string"/>
         <element label="Interviewed" max_length="40" name="interviewed" type="boolean"/>
-        <element label="Interviewer" max_length="32" name="interviewer" reference="sys_user" type="reference"/>
+        <element label="Interviewer" max_length="32" name="interviewer" reference="sys_user" reference_qual="u_staff=true^ORu_faculty=true^EQ" reference_qual_condition="u_staff=true^ORu_faculty=true^EQ" type="reference"/>
         <element label="Interview Date" max_length="40" name="interview_date" type="glide_date"/>
         <element default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
         <element label="Authorized to work" max_length="40" name="question_1" type="boolean"/>
@@ -35,7 +35,7 @@
         <element label="Expected Graduation Date" max_length="40" name="student_expected_grad_date" type="string"/>
         <element label="GPA" max_length="20" name="student_gpa" type="string"/>
         <element label="Major" max_length="40" name="student_major" type="string"/>
-        <element label="Student Name" max_length="32" name="student_name" reference="sys_user" type="reference"/>
+        <element label="Student Name" max_length="32" name="student_name" read_only="true" reference="sys_user" type="reference"/>
         <element label="Student Phone" max_length="40" name="student_phone" type="string"/>
         <element label="Position(s)" max_length="40" name="student_position" type="string"/>
         <element label="Units Enrolled" max_length="20" name="student_units_enrolled" type="string"/>
