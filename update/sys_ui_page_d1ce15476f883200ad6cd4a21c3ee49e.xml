@@ -2,7 +2,9 @@
 <record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script><![CDATA[var sectionStatus = {};//Holds completion status for each section
+        <client_script><![CDATA[var isChrome;//Since firefox and safari don't support html5 date type
+
+var sectionStatus = {};//Holds completion status for each section
 
 var cont_names = ["CONT_START_general_info", "CONT_START_questions", "CONT_START_employment_history",
 "CONT_START_personal_history", "CONT_START_references", "CONT_START_submit"];
@@ -245,14 +247,25 @@ function saveFieldData() {
 			el2.className += " invalidField";    //Set css class
 			valid = false;
 		}
-			if (q[i].type === 'date') {
-			//Convert date to YYYY-MM-DD for date variable (hopefully fix this sometime)
+		if (q[i].type === 'date') {
 			var d = q[i].answer;
+			if ((!isChrome) && ((d !== '') && (d !== null))) {
+				//create date with provided typed string. convert to ISO. (firefox, safari)
+				d = document.getElementById(q[i].id).value;
+				console.log(d);
+				var date = new Date(d);
+				try {
+					d = date.toISOString();
+				} catch (e){
+					alert("The date you entered for \"Earliest Availability\" is not formatted properly. Required format: MM/DD/YYYY");
+					return false;
+				}
+			}
+			//Convert date to YYYY-MM-DD for date variable (hopefully fix this sometime)
 			try {
 				d = d.substr(0,10);//Get the first few characters, removing extra stuff
-			} catch (e) {
-				console.log("safari problem: " + e);
-			}
+			} catch (e) {console.log("safari problem: " + e);}
+			
 			q[i].answer = d;
 		}
 		g_form.setValue(q[i].id,q[i].answer,q[i].answer);
@@ -351,9 +364,8 @@ function findPos(obj) {
 function test(){
 	alert('TEST');
 }]]></client_script>
-        <description>Full student application. All data input occurs here. &#13;
+        <description>Full student application. All data input occurs here. Uses angular controllers and directives.&#13;
 &#13;
-Display the current psuedopage the user is on in respect to the student application. &#13;
 Classes for breadcrumbs are 'completed', 'completed disabled', 'disabled', 'active'. Use 'none' for default look</description>
         <direct>false</direct>
         <endpoint>x_casus_irt_studen_student_app_main_page.do</endpoint>
@@ -389,10 +401,11 @@ Classes for breadcrumbs are 'completed', 'completed disabled', 'disabled', 'acti
 	var userAgent = navigator.userAgent.toLowerCase();
 if (userAgent .indexOf('safari')!=-1){ 
        if(userAgent .indexOf('chrome')  > -1){
-		//chrome
+		isChrome= true;
        }else if((userAgent .indexOf('opera')  > -1)||(userAgent .indexOf('opr')  > -1)){
          //browser is opera 
        }else{
+		isChrome = false;
 		fixSafariCSS();//Fix safari specific css problems
        }
     }
@@ -628,7 +641,7 @@ h4.scheduler {
 	<p>
 		<ul>
 			<li>If an area does not apply, please indicate "N/A" and, if warranted, explain in cover letter.</li>
-			<li>A resume cannot be used in lieu of employment history.</li>
+			<li>A résumé cannot be used in lieu of employment history.</li>
 			<li>Applications will be screened for the best qualified candidates. Applicants to be interviewed will be contacted
 				by email and/or phone. </li>
 			<li>Student employment is at the mutual consent of both the department and the student. Employment may be terminated by either party "at will" with or without cause or notice.</li>
@@ -819,16 +832,16 @@ h4.scheduler {
 								<div ng-switch-when='date'>
 									<div class="form-group col-md-10">
 										<div class="row">
-											<label for="{{q.id}}-details" class="radio-label">{{q.question}}</label>
+											<label for="{{q.id}}" class="radio-label">{{q.question}}</label>
 										</div>
 										<div class="row">
-											<input class ="form-control" id="{{q.id}}-details" ng-model="q.answer" type="date"/>
+											<input placeholder="mm/dd/yyyy" class ="form-control" id="{{q.id}}" ng-model="q.answer" type="date"/>
 										</div>
 									</div>
 								</div>
 								<!-- DEFAULT -->
 								<div ng-switch-default="">
-									<p>ERROR</p>
+									<p>ERROR - You shouldn't be seeing this :(</p>
 								</div>
 							</div> <!-- End Switch -->
 						</div> <!-- End Repeat -->
@@ -1204,7 +1217,7 @@ h4.scheduler {
         <sys_created_on>2017-01-05 20:40:20</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>d1ce15476f883200ad6cd4a21c3ee49e</sys_id>
-        <sys_mod_count>724</sys_mod_count>
+        <sys_mod_count>747</sys_mod_count>
         <sys_name>student_app_main_page</sys_name>
         <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
         <sys_policy/>
@@ -1212,6 +1225,6 @@ h4.scheduler {
         <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
         <sys_update_name>sys_ui_page_d1ce15476f883200ad6cd4a21c3ee49e</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-04-12 18:24:06</sys_updated_on>
+        <sys_updated_on>2017-04-13 16:21:29</sys_updated_on>
     </sys_ui_page>
 </record_update>
