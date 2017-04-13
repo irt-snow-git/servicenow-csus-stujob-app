@@ -5,7 +5,7 @@
         <client_script><![CDATA[var isChrome;//Since firefox and safari don't support html5 date type
 
 var sectionStatus = {};//Holds completion status for each section
-
+//not used at this time
 var cont_names = ["CONT_START_general_info", "CONT_START_questions", "CONT_START_employment_history",
 "CONT_START_personal_history", "CONT_START_references", "CONT_START_submit"];
 
@@ -13,7 +13,7 @@ var parent_cont_names = ["parent_general_info", "parent_questions", "parent_empl
 "parent_personal_history", "parent_references", "parent_submit" ];
 
 var max_sections = cont_names.length;
-
+//not used at this time
 function changePage(e) {
 	
 	//Get ID tag name of html element
@@ -283,12 +283,10 @@ function saveFieldData() {
 	var cleanedData = JSON.parse(document.getElementById("employers_all").value);
 	cleanedData = removeEmptyObjects(cleanedData);
 	g_form.setValue('data_employment_history',JSON.stringify(cleanedData));
-	console.log(cleanedData);
 	//Again
 	cleanedData = JSON.parse(document.getElementById("references_all").value);
 	cleanedData = removeEmptyObjects(cleanedData);
 	g_form.setValue('data_references',JSON.stringify(cleanedData));
-	console.log(cleanedData);
 	
 	return valid;
 }
@@ -387,15 +385,6 @@ Classes for breadcrumbs are 'completed', 'completed disabled', 'disabled', 'acti
    		//Set the visible field to the user's name (this field is readonly)
    		document.getElementById("student-name").value = g_user.getFullName();
 
-		<!--
-		var fieldsToModify = document.getElementsByClassName('form-control');
-		console.log(fieldsToModify);
-		for (val of fieldsToModify) {
-			val.style = "width: 40% !important\;";
-		}
-		var f_gpa = g_form.getControl('student_gpa');
-		f_gpa.style = "width: 40% !important\;";
-	   -->
 	
 	//check browser
 	var userAgent = navigator.userAgent.toLowerCase();
@@ -1193,9 +1182,6 @@ h4.scheduler {
 			</tr> <!-- End Repeat -->
 			
 		</table>
-		<!-- TEMP TESTING REMOVE -->
-		<br></br>
-		<br></br>
 		<div>
 		<div class="row">
 				<input type="hidden" id="schedule_values_all" value=" {{ timeKeeper }}"/>
@@ -1217,7 +1203,7 @@ h4.scheduler {
         <sys_created_on>2017-01-05 20:40:20</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>d1ce15476f883200ad6cd4a21c3ee49e</sys_id>
-        <sys_mod_count>747</sys_mod_count>
+        <sys_mod_count>750</sys_mod_count>
         <sys_name>student_app_main_page</sys_name>
         <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
         <sys_policy/>
@@ -1225,6 +1211,6 @@ h4.scheduler {
         <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
         <sys_update_name>sys_ui_page_d1ce15476f883200ad6cd4a21c3ee49e</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-04-13 16:21:29</sys_updated_on>
+        <sys_updated_on>2017-04-13 18:25:32</sys_updated_on>
     </sys_ui_page>
 </record_update>
