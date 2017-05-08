@@ -377,7 +377,7 @@ Classes for breadcrumbs are 'completed', 'completed disabled', 'disabled', 'acti
 	{
 		hideDataVariables();
 		<!-- add listener for mouse click events to parent of list objects -->
-		//document.getElementById("nav_breadcrumb_bar").addEventListener( 'click', changePage);
+		document.getElementById("nav_breadcrumb_bar").addEventListener( 'click', changePage);
 		modifySubmitButton();//Removes default submit buttton (broken on safari)
 		//initHideSections();//hides the divs for each sections initially when page is loaded
 
@@ -567,15 +567,15 @@ h4.scheduler {
 <!-- id "current_section" holds the value of which section the user is currently viewing. This value will change when button/links
 	are pressed. Changing this value should change the visiblity of the various sections. -->
 <input type='HIDDEN' value='0' id='current_section'/>
-<!--	
+	
 <div class="col-xs-12" style="padding: 0px;">
 	<div class="custom-form-group form-group catalog-form-group">
 		<table style="width: 95%">
 			<tbody>
 				<tr>
 				<td>
-					id nav_breadcrumb_bar is parent listener for clicks on the nav options
-						Note: id names are case-sensitive. Must be same name as container in RP
+					<!-- id nav_breadcrumb_bar is parent listener for clicks on the nav options
+						Note: id names are case-sensitive. Must be same name as container in RP-->
 					
 					<ol class="process-breadcrumb process-breadcrumb-border" id="nav_breadcrumb_bar">
 						<li class="active" id="parent_general_info">
@@ -603,7 +603,7 @@ h4.scheduler {
 		</table>
 	</div>
 </div>
--->
+
 
 <div class="row">
 	<br></br>
@@ -1203,7 +1203,7 @@ h4.scheduler {
         <sys_created_on>2017-01-05 20:40:20</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>d1ce15476f883200ad6cd4a21c3ee49e</sys_id>
-        <sys_mod_count>750</sys_mod_count>
+        <sys_mod_count>752</sys_mod_count>
         <sys_name>student_app_main_page</sys_name>
         <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
         <sys_policy/>
@@ -1211,6 +1211,6 @@ h4.scheduler {
         <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
         <sys_update_name>sys_ui_page_d1ce15476f883200ad6cd4a21c3ee49e</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-04-13 18:25:32</sys_updated_on>
+        <sys_updated_on>2017-05-08 18:30:07</sys_updated_on>
     </sys_ui_page>
 </record_update>
