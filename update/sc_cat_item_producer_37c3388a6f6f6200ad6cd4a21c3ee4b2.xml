@@ -64,6 +64,7 @@
         <template/>
         <type>item</type>
         <u_filter_roles/>
+        <u_override_notifications>false</u_override_notifications>
         <use_sc_layout>true</use_sc_layout>
         <vendor/>
         <view/>
