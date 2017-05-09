@@ -49,19 +49,18 @@ function toggleVisibleAll(containerName) {
 
 
 /*_________________________________________________________________
- * Description: Updates the containers CSS classes, sets an active container
- * Parameters: ID of the desired container to set to active
- * Returns:
+ * Description: Updates the section NavBar CSS classes, sets an active Nav item
+ * Parameters: ID of the desired section to set to active
 ________________________________________________________________*/
 function updateCSS(ID) {
 	//alert('section status = ' + sectionStatus['CONT_START_general_info']);
-	document.getElementById("parent_general_info").className = sectionStatus['CONT_START_general_info'];
-	document.getElementById("parent_questions").className = sectionStatus['CONT_START_questions'];
-	document.getElementById("parent_employment_history").className = sectionStatus['CONT_START_employment_history'];
-	document.getElementById("parent_personal_history").className = sectionStatus['CONT_START_personal_history'];
-	document.getElementById("parent_references").className = sectionStatus['CONT_START_references'];
+	gel("parent_general_info").className = sectionStatus['CONT_START_general_info'];
+	gel("parent_questions").className = sectionStatus['CONT_START_questions'];
+	gel("parent_employment_history").className = sectionStatus['CONT_START_employment_history'];
+	gel("parent_personal_history").className = sectionStatus['CONT_START_personal_history'];
+	gel("parent_references").className = sectionStatus['CONT_START_references'];
 	//Activate the actual desired container
-	document.getElementById(ID).className += " active";
+	gel(ID).className += " active";
 }
 
 
@@ -76,11 +75,11 @@ the section. Use 'completed' or 'none' or 'active'. Multiple classes can apply.
 ________________________________________________________________*/
 function updateSectionStatus(cont_name, status) {
 	sectionStatus[cont_name] = status;
-	var parentID = document.getElementById(cont_name).parentNode.id;
-	if ( !document.getElementById(parentID).className.match(/(?:^|\s)active(?!\S)/) ) {
-		document.getElementById(parentID).className = status;
+	var parentID = gel(cont_name).parentNode.id;
+	if ( !gel(parentID).className.match(/(?:^|\s)active(?!\S)/) ) {
+		gel(parentID).className = status;
 	}
-	document.getElementById(parentID).className = 'active ' + status;
+	gel(parentID).className = 'active ' + status;
 }
 
 
@@ -90,7 +89,7 @@ function updateSectionStatus(cont_name, status) {
  * Returns:
 ________________________________________________________________*/
 function nextPage(num) {
-	var page = document.getElementById("current_section");
+	var page = gel("current_section");
 	var current_section = parseInt(page.value);
 	page.value = current_section + num;
 	toggleButtons(page);
@@ -105,7 +104,7 @@ function nextPage(num) {
  * Returns:
 ________________________________________________________________*/
 function updatePageIndex(cont_name) {
-	var page = document.getElementById("current_section");
+	var page = gel("current_section");
 	var current_section = parseInt(page.value);
 	
 	page.value = cont_names.indexOf(cont_name);
@@ -135,13 +134,13 @@ function toggleButtons(page) {
 }
 
 function initHideSections() {
-	var divSection = document.getElementById("employment-history-div");
+	var divSection = gel("employment-history-div");
 	divSection.style.display = 'none';
-	divSection = document.getElementById("references-div");
+	divSection = gel("references-div");
 	divSection.style.display = 'none';
-	divSection = document.getElementById("personal-history-div");
+	divSection = gel("personal-history-div");
 	divSection.style.display = 'none';
-	divSection = document.getElementById("availability-div");
+	divSection = gel("availability-div");
 	divSection.style.display = 'none';
 	
 }
@@ -189,46 +188,46 @@ function saveFieldData() {
 	
 	
 	//Save the individual fields (hard coded for now, change to a loop eventually...)
-	var val = document.getElementById("student-address").value;
+	var val = gel("student-address").value;
 	g_form.setValue('student_address',val,val);
 	fields['student-address'] = val;
 
-	val = document.getElementById("student-phone").value;
+	val = gel("student-phone").value;
 	g_form.setValue('student_phone',val,val);
 	fields['student-phone'] = val;
 	
-	val = document.getElementById("student-email").value;
+	val = gel("student-email").value;
 	g_form.setValue('student_email',val,val);
 	fields['student-email'] = val;
 	
-	val = document.getElementById("student-major").value;
+	val = gel("student-major").value;
 	g_form.setValue('student_major',val,val);
 	fields['student-major'] = val;
 	
-	val = document.getElementById("student-class-level").value;
+	val = gel("student-class-level").value;
 	g_form.setValue('student_class_level',val,val);
 	fields['student-class-level'] = val;
 	///////Selected element is different maybe idk
-	val = document.getElementById("student-grad-date").value;
+	val = gel("student-grad-date").value;
 	g_form.setValue('student_expected_grad_date',val,val);
 	fields['student-grad-date'] = val;
 	
-	val = document.getElementById("student-units").value;
+	val = gel("student-units").value;
 	g_form.setValue('student_units_enrolled',val,val);
 	fields['student-units'] = val;
 	
-	val = document.getElementById("student-gpa").value;
+	val = gel("student-gpa").value;
 	g_form.setValue('student_gpa',val,val);
 	fields['student-gpa'] = val;
 	
-	val = document.getElementById("student-position").value;
+	val = gel("student-position").value;
 	g_form.setValue('student_position',val,val);
 	fields['student-position'] = val;
 	
 	for(var j = 0; j < fieldNames.length; j++){
 		if ((fields[fieldNames[j]] === '')) {
 			missingFields = fieldNames[j];
-			var el = document.getElementById(fieldNames[j]);
+			var el = gel(fieldNames[j]);
 			el.addEventListener('focus',removeInvalidClass);//add event handler
 			//el.addEventListener('mouseenter',removeInvalidClass);//add event handler
 			el.className += " invalidField";    //Set css class
@@ -237,11 +236,11 @@ function saveFieldData() {
 	}
 	
 	var q = {};
-	q = JSON.parse(document.getElementById("questions_all").value);
+	q = JSON.parse(gel("questions_all").value);
 	
 	for(var i = 0; i<q.length; i++){
 		if (q[i].answer === 'null') {
-			var el2 = document.getElementById(q[i].id + "-div");
+			var el2 = gel(q[i].id + "-div");
 			el2.addEventListener('focus',removeInvalidClass);//add event handler
 			el2.addEventListener('mouseenter',removeInvalidClass, true);//add event handler
 			el2.className += " invalidField";    //Set css class
@@ -251,7 +250,7 @@ function saveFieldData() {
 			var d = q[i].answer;
 			if ((!isChrome) && ((d !== '') && (d !== null))) {
 				//create date with provided typed string. convert to ISO. (firefox, safari)
-				d = document.getElementById(q[i].id).value;
+				d = gel(q[i].id).value;
 				console.log(d);
 				var date = new Date(d);
 				try {
@@ -271,20 +270,20 @@ function saveFieldData() {
 		g_form.setValue(q[i].id,q[i].answer,q[i].answer);
 	}
 	if (!valid) {
-		window.scroll(0,findPos(document.getElementById("general-info-panel-div")));
+		window.scroll(0,findPos(gel("general-info-panel-div")));
 
 		return false;//just break away and skip this stuff if they are missing fields 
 	}
 	//These elements contain the objects with the data for each section (these aren't required)
-	g_form.setValue('data_availability', document.getElementById("schedule_values_all").value);
-	g_form.setValue('data_personal_history', document.getElementById("personal_history_all").value);
+	g_form.setValue('data_availability', gel("schedule_values_all").value);
+	g_form.setValue('data_personal_history', gel("personal_history_all").value);
 	
 	//Since the html is dynamically created, clean out any empty submissions so completely blank sections won't appear
-	var cleanedData = JSON.parse(document.getElementById("employers_all").value);
+	var cleanedData = JSON.parse(gel("employers_all").value);
 	cleanedData = removeEmptyObjects(cleanedData);
 	g_form.setValue('data_employment_history',JSON.stringify(cleanedData));
 	//Again
-	cleanedData = JSON.parse(document.getElementById("references_all").value);
+	cleanedData = JSON.parse(gel("references_all").value);
 	cleanedData = removeEmptyObjects(cleanedData);
 	g_form.setValue('data_references',JSON.stringify(cleanedData));
 	
@@ -320,7 +319,7 @@ function removeEmptyObjects(data) {
 
 function removeInvalidClass(e) {
 	var clickedItem = e.target.id;
-	var element = document.getElementById(clickedItem);
+	var element = gel(clickedItem);
 	element.className = element.className.replace( /(?:^|\s)invalidField(?!\S)/g , '' );
 	e.stopPropagation();
 	
@@ -333,7 +332,7 @@ function removeInvalidClass(e) {
  * Returns:
 ________________________________________________________________*/
 function showHelpText(elementID, display) {
-	var element = document.getElementById(elementID);
+	var element = gel(elementID);
 	if (display === 'false' ) {
 		element.className = "helptextHidden";
 	} else {
@@ -379,7 +378,7 @@ Classes for breadcrumbs are 'completed', 'completed disabled', 'disabled', 'acti
 		<!-- add listener for mouse click events to parent of list objects -->
 		document.getElementById("nav_breadcrumb_bar").addEventListener( 'click', changePage);
 		modifySubmitButton();//Removes default submit buttton (broken on safari)
-		//initHideSections();//hides the divs for each sections initially when page is loaded
+		initHideSections();//hides the divs for each sections initially when page is loaded
 
 	   	var userName = g_user.userName;
    		//Set the visible field to the user's name (this field is readonly)
@@ -557,9 +556,6 @@ h4.scheduler {
 .invalidField select{
 	border-color: red;
 }
-
-
-
 
 </style>
 		
@@ -1203,7 +1199,7 @@ h4.scheduler {
         <sys_created_on>2017-01-05 20:40:20</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>d1ce15476f883200ad6cd4a21c3ee49e</sys_id>
-        <sys_mod_count>753</sys_mod_count>
+        <sys_mod_count>756</sys_mod_count>
         <sys_name>student_app_main_page</sys_name>
         <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
         <sys_policy/>
@@ -1211,6 +1207,6 @@ h4.scheduler {
         <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
         <sys_update_name>sys_ui_page_d1ce15476f883200ad6cd4a21c3ee49e</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-05-09 22:39:58</sys_updated_on>
+        <sys_updated_on>2017-05-09 23:23:27</sys_updated_on>
     </sys_ui_page>
 </record_update>
