@@ -40,7 +40,7 @@ function onSubmit() {
         <sys_class_name>catalog_script_client</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2017-01-18 19:45:55</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>052f809b6f1c7600ad6cd4a21c3ee447</sys_id>
         <sys_mod_count>13</sys_mod_count>

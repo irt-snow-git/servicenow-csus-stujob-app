@@ -39,7 +39,7 @@ Close this window
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2017-03-15 19:10:33</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>ae5d90590fa9f20012e4348ce1050ea1</sys_id>
         <sys_mod_count>15</sys_mod_count>
         <sys_name>Post Submit Page</sys_name>

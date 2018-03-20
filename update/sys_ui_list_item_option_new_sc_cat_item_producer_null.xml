@@ -89,7 +89,7 @@
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>gg622</sys_created_by>
             <sys_created_on>2016-12-22 19:44:32</sys_created_on>
-            <sys_customer_update>true</sys_customer_update>
+            <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_id>f12c45a60fb3660012e4348ce1050e89</sys_id>
             <sys_mod_count>0</sys_mod_count>

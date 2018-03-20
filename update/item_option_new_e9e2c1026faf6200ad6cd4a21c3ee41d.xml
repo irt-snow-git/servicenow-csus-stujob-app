@@ -57,7 +57,7 @@
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2016-12-08 19:32:05</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>e9e2c1026faf6200ad6cd4a21c3ee41d</sys_id>
         <sys_mod_count>4</sys_mod_count>
         <sys_name>Please indicate the earliest date you are available to work</sys_name>

@@ -21,7 +21,7 @@
         <sys_class_name>sys_db_object</sys_class_name>
         <sys_created_by>nicholasmyers</sys_created_by>
         <sys_created_on>2016-12-06 18:32:53</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>1b42ea956f636200ad6cd4a21c3ee496</sys_id>
         <sys_mod_count>1</sys_mod_count>
         <sys_name>Student Employee Applications</sys_name>

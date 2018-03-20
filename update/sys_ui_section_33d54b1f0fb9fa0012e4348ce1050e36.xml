@@ -23,7 +23,7 @@
             <sys_class_name>sys_ui_section</sys_class_name>
             <sys_created_by>gg622</sys_created_by>
             <sys_created_on>2017-04-03 22:37:21</sys_created_on>
-            <sys_customer_update>true</sys_customer_update>
+            <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_id>33d54b1f0fb9fa0012e4348ce1050e36</sys_id>
             <sys_mod_count>0</sys_mod_count>

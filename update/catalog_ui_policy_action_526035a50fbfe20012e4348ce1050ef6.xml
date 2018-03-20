@@ -9,7 +9,7 @@
         <sys_class_name>catalog_ui_policy_action</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2016-12-19 19:49:14</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>526035a50fbfe20012e4348ce1050ef6</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>question_2a</sys_name>

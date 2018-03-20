@@ -22,14 +22,14 @@
         <sys_created_by>nicholasmyers</sys_created_by>
         <sys_created_on>2016-12-06 18:32:49</sys_created_on>
         <sys_id>d742ea956f636200ad6cd4a21c3ee496</sys_id>
-        <sys_mod_count>20</sys_mod_count>
-        <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-05-09 22:37:34</sys_updated_on>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_updated_by>nicholasmyers</sys_updated_by>
+        <sys_updated_on>2018-03-20 23:29:39</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <user_role display_value="x_casus_irt_studen.user" name="x_casus_irt_studen.user">1f42ae956f636200ad6cd4a21c3ee458</user_role>
         <vendor/>
         <vendor_prefix/>
-        <version>1.2.0</version>
+        <version>1.2.1</version>
     </sys_app>
 </record_update>

@@ -8,7 +8,7 @@
         <sys_class_name>question_choice</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2017-01-17 21:39:31</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>bacf5b7e6f947600ad6cd4a21c3ee4a1</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>No</sys_name>

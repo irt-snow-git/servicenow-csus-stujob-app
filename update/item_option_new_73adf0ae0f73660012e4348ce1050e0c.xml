@@ -57,7 +57,7 @@
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2016-12-22 18:41:56</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>73adf0ae0f73660012e4348ce1050e0c</sys_id>
         <sys_mod_count>5</sys_mod_count>
         <sys_name>CONT_start_employer_date_1</sys_name>

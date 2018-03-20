@@ -98,7 +98,7 @@
             <sys_class_name>sys_ui_form</sys_class_name>
             <sys_created_by>gg622</sys_created_by>
             <sys_created_on>2017-04-07 22:35:24</sys_created_on>
-            <sys_customer_update>true</sys_customer_update>
+            <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_id>e2cb6f206f4a7e00ad6cd4a21c3ee40b</sys_id>
             <sys_mod_count>0</sys_mod_count>

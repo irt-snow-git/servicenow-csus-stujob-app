@@ -57,7 +57,7 @@
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2017-01-04 22:10:15</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>131a603e0f44320012e4348ce1050e81</sys_id>
         <sys_mod_count>3</sys_mod_count>
         <sys_name>CONT_END_personal_history</sys_name>

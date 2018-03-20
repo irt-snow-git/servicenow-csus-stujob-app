@@ -33,7 +33,7 @@ function onCondition() {
         <sys_class_name>sys_ui_policy</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2017-02-09 23:07:34</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>7f5f4e1a0f3c320012e4348ce1050ef0</sys_id>
         <sys_mod_count>8</sys_mod_count>

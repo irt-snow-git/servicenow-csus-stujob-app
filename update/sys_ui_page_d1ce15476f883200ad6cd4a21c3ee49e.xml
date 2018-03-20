@@ -1196,7 +1196,7 @@ h4.scheduler {
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2017-01-05 20:40:20</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>d1ce15476f883200ad6cd4a21c3ee49e</sys_id>
         <sys_mod_count>757</sys_mod_count>
         <sys_name>student_app_main_page</sys_name>

@@ -57,7 +57,7 @@
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2016-12-22 18:30:48</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>d62b382e0f73660012e4348ce1050ecb</sys_id>
         <sys_mod_count>4</sys_mod_count>
         <sys_name>Your Job Title</sys_name>

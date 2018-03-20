@@ -25,7 +25,7 @@
         <sys_class_name>sys_ui_policy</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2017-02-09 23:55:34</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>1f6b5ede0f3c320012e4348ce1050e5d</sys_id>
         <sys_mod_count>0</sys_mod_count>

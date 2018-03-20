@@ -57,7 +57,7 @@
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2016-12-08 19:07:18</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>a36cbc4e6f6f6200ad6cd4a21c3ee47b</sys_id>
         <sys_mod_count>11</sys_mod_count>
         <sys_name>Are you authroized to work in the United States</sys_name>

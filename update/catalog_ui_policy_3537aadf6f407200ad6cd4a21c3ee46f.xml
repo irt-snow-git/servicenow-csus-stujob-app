@@ -29,7 +29,7 @@
         <sys_class_name>catalog_ui_policy</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2017-01-06 20:34:59</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>3537aadf6f407200ad6cd4a21c3ee46f</sys_id>
         <sys_mod_count>11</sys_mod_count>
