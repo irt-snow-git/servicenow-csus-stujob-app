@@ -17,9 +17,9 @@ box-shadow: rgba(0, 0, 0, 0.2) 0 1px 3px;&#13;
         <sys_class_name>sys_ui_macro</sys_class_name>
         <sys_created_by>gg622</sys_created_by>
         <sys_created_on>2016-12-21 23:54:36</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>47bb3c1e6f33e600ad6cd4a21c3ee4c3</sys_id>
-        <sys_mod_count>90</sys_mod_count>
+        <sys_mod_count>89</sys_mod_count>
         <sys_name>next_button</sys_name>
         <sys_package display_value="IRT Student Employment Applications" source="x_casus_irt_studen">d742ea956f636200ad6cd4a21c3ee496</sys_package>
         <sys_policy/>
@@ -27,7 +27,7 @@ box-shadow: rgba(0, 0, 0, 0.2) 0 1px 3px;&#13;
         <sys_scope display_value="IRT Student Employment Applications">d742ea956f636200ad6cd4a21c3ee496</sys_scope>
         <sys_update_name>sys_ui_macro_47bb3c1e6f33e600ad6cd4a21c3ee4c3</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-05-09 22:42:19</sys_updated_on>
+        <sys_updated_on>2017-04-06 23:16:12</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<style>
@@ -71,7 +71,7 @@ INPUT.button:disabled {
 	</style>
 	
 
-
+	<!-- Hide these buttons for now until we get the nav bar working again
 
 	<div style="text-align: center;">
 		<button id="previous_button" onclick="buttonPressed(-1)" style="padding:10px 20px;" class="dropbtn">
@@ -80,8 +80,7 @@ INPUT.button:disabled {
 		<button id="next_button" onclick="buttonPressed(1)" style="padding:10px 30px;" class="dropbtn">
 				<span>Next</span>
 		</button>
-	</div>
-
+	-->
 	<div style="text-align: center;"><!--Remove this div once we fix "next" and "prev" buttons-->
 		<button href="#" type="button" onclick="saveProducer('');" name="submit_button_final" id="submit_button_final" title="" class="request_catalog_button header_button btn cat-btn btn-primary" aria-label="Submit" data-original-title="Submit">Submit</button>
 	</div>
